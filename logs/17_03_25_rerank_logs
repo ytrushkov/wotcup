@@ -1,0 +1,939 @@
+
+[17-03-25 03:08:53.691151]   o1. Rerank initiated by YTrushkov - Batch 1
+
+[17-03-25 03:08:53.692019]   o2. Content in webl_games_2 selected as batch 
+[17-03-25 03:08:53.694344]   o3. Processed Rating:   1. 2017-03-21 00:36:20   ACE / T-M-L
+[17-03-25 03:08:53.696653]   o3. Processed Rating:   2. 2017-03-22 23:22:29   ACE / A0A
+[17-03-25 03:08:53.698917]   o3. Processed Rating:   3. 2017-03-24 01:42:35   PERIL / Nt
+
+
+[17-03-25 03:08:54.440016]   o0. Continuing with batch 2 >> 
+
+[17-03-25 03:08:54.441943]   o2. Content in webl_games_2 selected as batch 
+[17-03-25 03:08:54.444683]   o3. Processed Rating:   4. 2017-03-24 01:55:58   360NA / Nt
+[17-03-25 03:08:54.446960]   o3. Processed Rating:   5. 2017-03-24 02:40:44   360NA / PERIL
+
+[17-03-25 03:08:54.446990]   o4. Finished on entry 5 of 5 
+
+
+[17-03-25 03:10:00.340391]   o0. Continuing with batch 2 >> 
+
+[17-03-25 03:10:00.341225]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:10:00.788276]   o0. Continuing with batch 3 >> 
+
+[17-03-25 03:10:00.789211]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:10:01.504138]   o0. Continuing with batch 4 >> 
+
+[17-03-25 03:10:01.504885]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:10:06.732886]   o0. Continuing with batch 5 >> 
+
+[17-03-25 03:10:06.747003]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:10:07.380901]   o0. Continuing with batch 6 >> 
+
+[17-03-25 03:10:07.382336]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:10:08.67228]   o0. Continuing with batch 7 >> 
+
+[17-03-25 03:10:08.69159]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:10:08.703930]   o0. Continuing with batch 8 >> 
+
+[17-03-25 03:10:08.705269]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:10:09.309471]   o0. Continuing with batch 9 >> 
+
+[17-03-25 03:10:09.310993]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:10:09.690931]   o0. Continuing with batch 10 >> 
+
+[17-03-25 03:10:09.694949]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:10:10.412705]   o0. Continuing with batch 11 >> 
+
+[17-03-25 03:10:10.414244]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:10:11.42375]   o0. Continuing with batch 12 >> 
+
+[17-03-25 03:10:11.44370]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:10:11.645056]   o0. Continuing with batch 13 >> 
+
+[17-03-25 03:10:11.646160]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:10:12.33063]   o0. Continuing with batch 14 >> 
+
+[17-03-25 03:10:12.34546]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:10:12.649050]   o0. Continuing with batch 15 >> 
+
+[17-03-25 03:10:12.650033]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:10:13.326313]   o0. Continuing with batch 16 >> 
+
+[17-03-25 03:10:13.327281]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:10:14.21510]   o0. Continuing with batch 17 >> 
+
+[17-03-25 03:10:14.23296]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:10:14.694536]   o0. Continuing with batch 18 >> 
+
+[17-03-25 03:10:14.696061]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:10:15.302067]   o0. Continuing with batch 19 >> 
+
+[17-03-25 03:10:15.304173]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:10:15.898728]   o0. Continuing with batch 20 >> 
+
+[17-03-25 03:10:15.900080]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:10:16.565334]   o0. Continuing with batch 21 >> 
+
+[17-03-25 03:10:16.567195]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:10:16.963136]   o0. Continuing with batch 22 >> 
+
+[17-03-25 03:10:16.966110]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:10:17.722256]   o0. Continuing with batch 23 >> 
+
+[17-03-25 03:10:17.723161]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:10:19.89056]   o0. Continuing with batch 24 >> 
+
+[17-03-25 03:10:19.90839]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:10:19.708564]   o0. Continuing with batch 25 >> 
+
+[17-03-25 03:10:19.710275]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:10:20.435178]   o0. Continuing with batch 26 >> 
+
+[17-03-25 03:10:20.436596]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:10:21.190038]   o0. Continuing with batch 27 >> 
+
+[17-03-25 03:10:21.191608]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:10:21.596140]   o0. Continuing with batch 28 >> 
+
+[17-03-25 03:10:21.597647]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:10:22.209420]   o0. Continuing with batch 29 >> 
+
+[17-03-25 03:10:22.210748]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:10:22.915726]   o0. Continuing with batch 30 >> 
+
+[17-03-25 03:10:22.917992]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:10:23.466185]   o0. Continuing with batch 31 >> 
+
+[17-03-25 03:10:23.467642]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:10:24.152144]   o0. Continuing with batch 32 >> 
+
+[17-03-25 03:10:24.153079]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:10:24.787368]   o0. Continuing with batch 33 >> 
+
+[17-03-25 03:10:24.788956]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:10:25.251832]   o0. Continuing with batch 34 >> 
+
+[17-03-25 03:10:25.252920]   o2. Content in webl_games selected as batch 
+
+[17-03-25 03:11:12.979977]   o1. Rerank initiated by YTrushkov - Batch 1
+
+[17-03-25 03:11:12.980659]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:13.731386]   o0. Continuing with batch 2 >> 
+
+[17-03-25 03:11:13.732842]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:14.343393]   o0. Continuing with batch 3 >> 
+
+[17-03-25 03:11:14.344844]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:14.955301]   o0. Continuing with batch 4 >> 
+
+[17-03-25 03:11:14.957189]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:15.797553]   o0. Continuing with batch 5 >> 
+
+[17-03-25 03:11:15.798742]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:16.466162]   o0. Continuing with batch 6 >> 
+
+[17-03-25 03:11:16.467749]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:17.78713]   o0. Continuing with batch 7 >> 
+
+[17-03-25 03:11:17.79882]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:17.531706]   o0. Continuing with batch 8 >> 
+
+[17-03-25 03:11:17.532963]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:17.864151]   o0. Continuing with batch 9 >> 
+
+[17-03-25 03:11:17.865419]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:18.267822]   o0. Continuing with batch 10 >> 
+
+[17-03-25 03:11:18.269398]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:18.608208]   o0. Continuing with batch 11 >> 
+
+[17-03-25 03:11:18.609572]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:18.972183]   o0. Continuing with batch 12 >> 
+
+[17-03-25 03:11:18.973702]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:19.334731]   o0. Continuing with batch 13 >> 
+
+[17-03-25 03:11:19.336425]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:19.669459]   o0. Continuing with batch 14 >> 
+
+[17-03-25 03:11:19.670342]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:19.995701]   o0. Continuing with batch 15 >> 
+
+[17-03-25 03:11:19.997196]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:20.370565]   o0. Continuing with batch 16 >> 
+
+[17-03-25 03:11:20.371361]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:20.771866]   o0. Continuing with batch 17 >> 
+
+[17-03-25 03:11:20.772923]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:21.168615]   o0. Continuing with batch 18 >> 
+
+[17-03-25 03:11:21.170085]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:21.508590]   o0. Continuing with batch 19 >> 
+
+[17-03-25 03:11:21.510497]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:21.843248]   o0. Continuing with batch 20 >> 
+
+[17-03-25 03:11:21.845233]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:22.312816]   o0. Continuing with batch 21 >> 
+
+[17-03-25 03:11:22.314246]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:22.665933]   o0. Continuing with batch 22 >> 
+
+[17-03-25 03:11:22.667359]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:23.32781]   o0. Continuing with batch 23 >> 
+
+[17-03-25 03:11:23.34401]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:23.379751]   o0. Continuing with batch 24 >> 
+
+[17-03-25 03:11:23.380894]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:23.786393]   o0. Continuing with batch 25 >> 
+
+[17-03-25 03:11:23.787195]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:24.245948]   o0. Continuing with batch 26 >> 
+
+[17-03-25 03:11:24.247557]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:24.613411]   o0. Continuing with batch 27 >> 
+
+[17-03-25 03:11:24.614420]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:25.33469]   o0. Continuing with batch 28 >> 
+
+[17-03-25 03:11:25.35348]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:25.396574]   o0. Continuing with batch 29 >> 
+
+[17-03-25 03:11:25.397705]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:25.741302]   o0. Continuing with batch 30 >> 
+
+[17-03-25 03:11:25.743141]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:26.76086]   o0. Continuing with batch 31 >> 
+
+[17-03-25 03:11:26.77612]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:26.408766]   o0. Continuing with batch 32 >> 
+
+[17-03-25 03:11:26.410539]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:26.761534]   o0. Continuing with batch 33 >> 
+
+[17-03-25 03:11:26.763016]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:27.206880]   o0. Continuing with batch 34 >> 
+
+[17-03-25 03:11:27.208453]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:27.543915]   o0. Continuing with batch 35 >> 
+
+[17-03-25 03:11:27.545225]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:27.902606]   o0. Continuing with batch 36 >> 
+
+[17-03-25 03:11:27.903986]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:28.339214]   o0. Continuing with batch 37 >> 
+
+[17-03-25 03:11:28.340494]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:28.801057]   o0. Continuing with batch 38 >> 
+
+[17-03-25 03:11:28.802669]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:29.215530]   o0. Continuing with batch 39 >> 
+
+[17-03-25 03:11:29.216694]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:29.635455]   o0. Continuing with batch 40 >> 
+
+[17-03-25 03:11:29.636665]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:30.69810]   o0. Continuing with batch 41 >> 
+
+[17-03-25 03:11:30.73122]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:30.456110]   o0. Continuing with batch 42 >> 
+
+[17-03-25 03:11:30.456963]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:30.847533]   o0. Continuing with batch 43 >> 
+
+[17-03-25 03:11:30.848927]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:31.224113]   o0. Continuing with batch 44 >> 
+
+[17-03-25 03:11:31.225586]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:31.571446]   o0. Continuing with batch 45 >> 
+
+[17-03-25 03:11:31.573731]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:32.107192]   o0. Continuing with batch 46 >> 
+
+[17-03-25 03:11:32.108934]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:32.533805]   o0. Continuing with batch 47 >> 
+
+[17-03-25 03:11:32.535780]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:32.951182]   o0. Continuing with batch 48 >> 
+
+[17-03-25 03:11:32.952437]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:33.311915]   o0. Continuing with batch 49 >> 
+
+[17-03-25 03:11:33.312894]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:33.702391]   o0. Continuing with batch 50 >> 
+
+[17-03-25 03:11:33.704397]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:34.191581]   o0. Continuing with batch 51 >> 
+
+[17-03-25 03:11:34.193480]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:34.563361]   o0. Continuing with batch 52 >> 
+
+[17-03-25 03:11:34.565132]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:34.925061]   o0. Continuing with batch 53 >> 
+
+[17-03-25 03:11:34.927013]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:35.380407]   o0. Continuing with batch 54 >> 
+
+[17-03-25 03:11:35.382427]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:35.806600]   o0. Continuing with batch 55 >> 
+
+[17-03-25 03:11:35.807968]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:36.229584]   o0. Continuing with batch 56 >> 
+
+[17-03-25 03:11:36.233337]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:36.576755]   o0. Continuing with batch 57 >> 
+
+[17-03-25 03:11:36.578203]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:37.1063]   o0. Continuing with batch 58 >> 
+
+[17-03-25 03:11:37.2400]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:37.344198]   o0. Continuing with batch 59 >> 
+
+[17-03-25 03:11:37.345649]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:37.734242]   o0. Continuing with batch 60 >> 
+
+[17-03-25 03:11:37.744458]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:38.264824]   o0. Continuing with batch 61 >> 
+
+[17-03-25 03:11:38.266386]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:38.612605]   o0. Continuing with batch 62 >> 
+
+[17-03-25 03:11:38.614415]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:39.65299]   o0. Continuing with batch 63 >> 
+
+[17-03-25 03:11:39.66540]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:39.503283]   o0. Continuing with batch 64 >> 
+
+[17-03-25 03:11:39.504740]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:40.113306]   o0. Continuing with batch 65 >> 
+
+[17-03-25 03:11:40.114784]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:40.578774]   o0. Continuing with batch 66 >> 
+
+[17-03-25 03:11:40.580109]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:40.931374]   o0. Continuing with batch 67 >> 
+
+[17-03-25 03:11:40.932628]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:41.312386]   o0. Continuing with batch 68 >> 
+
+[17-03-25 03:11:41.314092]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:41.651491]   o0. Continuing with batch 69 >> 
+
+[17-03-25 03:11:41.652619]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:42.90517]   o0. Continuing with batch 70 >> 
+
+[17-03-25 03:11:42.91782]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:42.557601]   o0. Continuing with batch 71 >> 
+
+[17-03-25 03:11:42.559805]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:43.596684]   o0. Continuing with batch 72 >> 
+
+[17-03-25 03:11:43.598120]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:44.286175]   o0. Continuing with batch 73 >> 
+
+[17-03-25 03:11:44.287125]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:44.723104]   o0. Continuing with batch 74 >> 
+
+[17-03-25 03:11:44.724443]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:45.275639]   o0. Continuing with batch 75 >> 
+
+[17-03-25 03:11:45.277257]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:45.667271]   o0. Continuing with batch 76 >> 
+
+[17-03-25 03:11:45.668315]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:46.52348]   o0. Continuing with batch 77 >> 
+
+[17-03-25 03:11:46.53766]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:46.441339]   o0. Continuing with batch 78 >> 
+
+[17-03-25 03:11:46.443046]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:46.825083]   o0. Continuing with batch 79 >> 
+
+[17-03-25 03:11:46.826504]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:47.269630]   o0. Continuing with batch 80 >> 
+
+[17-03-25 03:11:47.271192]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:47.619817]   o0. Continuing with batch 81 >> 
+
+[17-03-25 03:11:47.621273]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:47.990401]   o0. Continuing with batch 82 >> 
+
+[17-03-25 03:11:47.991991]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:48.381991]   o0. Continuing with batch 83 >> 
+
+[17-03-25 03:11:48.383604]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:48.732400]   o0. Continuing with batch 84 >> 
+
+[17-03-25 03:11:48.733643]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:49.103458]   o0. Continuing with batch 85 >> 
+
+[17-03-25 03:11:49.104971]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:49.486363]   o0. Continuing with batch 86 >> 
+
+[17-03-25 03:11:49.487683]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:49.969505]   o0. Continuing with batch 87 >> 
+
+[17-03-25 03:11:49.970633]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:11:50.320642]   o0. Continuing with batch 88 >> 
+
+[17-03-25 03:11:50.322147]   o2. Content in webl_games selected as batch 
+
+[17-03-25 03:12:35.716918]   o1. Rerank initiated by YTrushkov - Batch 1
+
+[17-03-25 03:12:35.718199]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:36.146527]   o0. Continuing with batch 2 >> 
+
+[17-03-25 03:12:36.148518]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:36.532831]   o0. Continuing with batch 3 >> 
+
+[17-03-25 03:12:36.534272]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:36.948217]   o0. Continuing with batch 4 >> 
+
+[17-03-25 03:12:36.949655]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:37.358443]   o0. Continuing with batch 5 >> 
+
+[17-03-25 03:12:37.360134]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:37.762425]   o0. Continuing with batch 6 >> 
+
+[17-03-25 03:12:37.763419]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:38.232393]   o0. Continuing with batch 7 >> 
+
+[17-03-25 03:12:38.233810]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:38.697836]   o0. Continuing with batch 8 >> 
+
+[17-03-25 03:12:38.699013]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:39.188428]   o0. Continuing with batch 9 >> 
+
+[17-03-25 03:12:39.189759]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:39.549671]   o0. Continuing with batch 10 >> 
+
+[17-03-25 03:12:39.551451]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:40.13197]   o0. Continuing with batch 11 >> 
+
+[17-03-25 03:12:40.14524]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:40.401667]   o0. Continuing with batch 12 >> 
+
+[17-03-25 03:12:40.403021]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:40.803690]   o0. Continuing with batch 13 >> 
+
+[17-03-25 03:12:40.805146]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:41.205874]   o0. Continuing with batch 14 >> 
+
+[17-03-25 03:12:41.207682]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:41.585689]   o0. Continuing with batch 15 >> 
+
+[17-03-25 03:12:41.586528]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:42.12678]   o0. Continuing with batch 16 >> 
+
+[17-03-25 03:12:42.13470]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:42.476902]   o0. Continuing with batch 17 >> 
+
+[17-03-25 03:12:42.478817]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:42.876122]   o0. Continuing with batch 18 >> 
+
+[17-03-25 03:12:42.878060]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:43.302217]   o0. Continuing with batch 19 >> 
+
+[17-03-25 03:12:43.302958]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:43.678814]   o0. Continuing with batch 20 >> 
+
+[17-03-25 03:12:43.680367]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:44.48798]   o0. Continuing with batch 21 >> 
+
+[17-03-25 03:12:44.50459]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:44.541762]   o0. Continuing with batch 22 >> 
+
+[17-03-25 03:12:44.543365]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:44.924014]   o0. Continuing with batch 23 >> 
+
+[17-03-25 03:12:44.926164]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:45.353295]   o0. Continuing with batch 24 >> 
+
+[17-03-25 03:12:45.354439]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:45.754659]   o0. Continuing with batch 25 >> 
+
+[17-03-25 03:12:45.755839]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:46.139889]   o0. Continuing with batch 26 >> 
+
+[17-03-25 03:12:46.141102]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:46.515078]   o0. Continuing with batch 27 >> 
+
+[17-03-25 03:12:46.516314]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:46.885924]   o0. Continuing with batch 28 >> 
+
+[17-03-25 03:12:46.887448]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:47.309926]   o0. Continuing with batch 29 >> 
+
+[17-03-25 03:12:47.311063]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:47.702599]   o0. Continuing with batch 30 >> 
+
+[17-03-25 03:12:47.704375]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:48.121338]   o0. Continuing with batch 31 >> 
+
+[17-03-25 03:12:48.122089]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:48.493878]   o0. Continuing with batch 32 >> 
+
+[17-03-25 03:12:48.495531]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:48.875853]   o0. Continuing with batch 33 >> 
+
+[17-03-25 03:12:48.876985]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:49.285123]   o0. Continuing with batch 34 >> 
+
+[17-03-25 03:12:49.286791]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:49.672609]   o0. Continuing with batch 35 >> 
+
+[17-03-25 03:12:49.673420]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:50.59365]   o0. Continuing with batch 36 >> 
+
+[17-03-25 03:12:50.60937]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:50.466261]   o0. Continuing with batch 37 >> 
+
+[17-03-25 03:12:50.467556]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:50.994799]   o0. Continuing with batch 38 >> 
+
+[17-03-25 03:12:50.996509]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:51.403386]   o0. Continuing with batch 39 >> 
+
+[17-03-25 03:12:51.404711]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:51.804361]   o0. Continuing with batch 40 >> 
+
+[17-03-25 03:12:51.805528]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:52.196135]   o0. Continuing with batch 41 >> 
+
+[17-03-25 03:12:52.198004]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:52.678230]   o0. Continuing with batch 42 >> 
+
+[17-03-25 03:12:52.679539]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:53.125626]   o0. Continuing with batch 43 >> 
+
+[17-03-25 03:12:53.126544]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:53.540733]   o0. Continuing with batch 44 >> 
+
+[17-03-25 03:12:53.542484]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:53.903106]   o0. Continuing with batch 45 >> 
+
+[17-03-25 03:12:53.904588]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:54.257156]   o0. Continuing with batch 46 >> 
+
+[17-03-25 03:12:54.258013]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:54.608109]   o0. Continuing with batch 47 >> 
+
+[17-03-25 03:12:54.609024]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:54.966609]   o0. Continuing with batch 48 >> 
+
+[17-03-25 03:12:54.968214]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:55.327843]   o0. Continuing with batch 49 >> 
+
+[17-03-25 03:12:55.329504]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:55.675317]   o0. Continuing with batch 50 >> 
+
+[17-03-25 03:12:55.676805]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:56.45775]   o0. Continuing with batch 51 >> 
+
+[17-03-25 03:12:56.47228]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:56.430158]   o0. Continuing with batch 52 >> 
+
+[17-03-25 03:12:56.432078]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:56.815333]   o0. Continuing with batch 53 >> 
+
+[17-03-25 03:12:56.817140]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:57.244027]   o0. Continuing with batch 54 >> 
+
+[17-03-25 03:12:57.245488]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:57.622740]   o0. Continuing with batch 55 >> 
+
+[17-03-25 03:12:57.623630]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:58.4744]   o0. Continuing with batch 56 >> 
+
+[17-03-25 03:12:58.5535]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:58.386174]   o0. Continuing with batch 57 >> 
+
+[17-03-25 03:12:58.387416]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:58.871053]   o0. Continuing with batch 58 >> 
+
+[17-03-25 03:12:58.872487]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:59.279489]   o0. Continuing with batch 59 >> 
+
+[17-03-25 03:12:59.280419]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:12:59.671699]   o0. Continuing with batch 60 >> 
+
+[17-03-25 03:12:59.673325]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:13:00.103445]   o0. Continuing with batch 61 >> 
+
+[17-03-25 03:13:00.104743]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:13:00.479149]   o0. Continuing with batch 62 >> 
+
+[17-03-25 03:13:00.480681]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:13:00.936402]   o0. Continuing with batch 63 >> 
+
+[17-03-25 03:13:00.937767]   o2. Content in webl_games selected as batch 
+
+
+[17-03-25 03:13:05.839078]   o0. Continuing with batch 64 >> 
+
+[17-03-25 03:13:05.856354]   o2. Content in webl_games selected as batch 

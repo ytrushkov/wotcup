@@ -1,0 +1,10 @@
+Yet another bug fix, luckily smaller this time
+
+// New
+
+- Old rank and new rank of players can be seen in their profile history of games
+
+
+// Fixes 
+
+- Maintenance mode refused to stop when unactivated

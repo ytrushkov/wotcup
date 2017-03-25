@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Selectmenu - Default functionality</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <style>
+    fieldset {
+      border: 0;
+    }
+    label {
+      display: block;
+      margin: 30px 0 0 0;
+    }
+    .overflow {
+      height: 200px;
+    }
+  </style>
+
+
+
+
+
+<script type="text/javascript" src="jquery/jquery-1.2.6.pack.js"></script>
+<script type='text/javascript' src='jquery/jquery.autocomplete.js'></script>
+<script type='text/javascript' src='jquery/jquery.cookie.js'></script>
+<script type="text/javascript" src="jquery/tablesorter/jquery.tablesorter.js"></script>
+<script type="text/javascript" src="jquery/tablesorter/jquery.tablesorter.pager.js"></script>
+<script type="text/javascript" src="jquery/tooltip.js"></script>
+<script type="text/javascript" src="jquery/ui/jquery-ui-1.7.2.custom.js"></script>
+<script type="text/javascript" src="jquery/utils.js"></script>
+
+  
+<link rel="stylesheet" type="text/css" href="css/wesnoth-main.css" />
+<link rel="stylesheet" type="text/css" href="css/sorter.css" />
+<link rel="stylesheet" type="text/css" href="css/jquery.autocomplete.css" />
+<!--jQuery User Interface-->
+<link rel="stylesheet" type="text/css" href="css/ui/ui.all.css" />
+
+
+</head>
+ 
+<div class="demo">
+ 
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+  <script>
+  $( function() {
+    $.widget( "custom.iconselectmenu", $.ui.selectmenu, {
+      _renderItem: function( ul, item ) {
+        var li = $( "<li>" ),
+          wrapper = $( "<div>", { text: item.label } );
+ 
+        if ( item.disabled ) {
+          li.addClass( "ui-state-disabled" );
+        }
+ 
+        $( "<span>", {
+          style: item.element.attr( "data-style" ),
+          "class": "ui-avatar " + item.element.attr( "data-class" ),
+        })
+          .appendTo( wrapper );
+ 
+        return li.append( wrapper ).appendTo( ul );
+      }
+    });
+ 
+ 
+    $( "#country_select" )
+      .iconselectmenu()
+      .iconselectmenu( "menuWidget" )
+        .addClass( "ui-menu-icons country" );
+ 
+    $( "#avatar" )
+      .iconselectmenu()
+      .iconselectmenu( "menuWidget")
+        .addClass( "ui-avatar avatar" );
+  } );
+  </script>
+  <style>
+    h2 {
+      margin: 30px 0 0 0;
+    }
+
+    .ui-menu-icons .ui-menu-item-wrapper {
+       padding-left: 2em;
+    }
+    .ui-avatar {
+        display: inline-block;
+	vertical-align: middle;
+	margin-top: -.25em;
+	position: relative;
+	text-indent: -99999px;
+	overflow: hidden;
+	background-repeat: no-repeat;
+    }
+
+.ui-icon {
+	display: inline-block;
+	vertical-align: middle;
+	margin-top: -.25em;
+	position: relative;
+	text-indent: -99999px;
+	overflow: hidden;
+	background-repeat: no-repeat;
+}
+
+.ui-widget-icon-block {
+	left: 50%;
+	margin-left: -8px;
+	display: block;
+}
+
+    /* select with CSS avatar icons */
+    option.avatar {
+      background-repeat: no-repeat !important;
+      padding-left: 100px;
+    }
+    .avatar .ui-avatar {
+      background-position: right top;
+      background-size: 64px 64px;
+    }
+
+    /* select with CSS avatar icons */
+    option.country {
+      background-repeat: no-repeat !important;      
+      padding-left: 24px;
+    }
+    .country .ui-icon {
+      background-position: left top;
+      background-size: 16px 16px;
+    }
+  </style>
+<form action="#">
+ 
+  <fieldset>
+<label for="salutation">Select a country</label>
+   <select size="1" name="country"  id="country_select">
+<option selected="">United States of America</option>
+<option>No Country</option><option value="Argentina">Argentina</option>
+<option data-class="avatar" data-style="background-image: url('graphics/flags/Australia.bmp');" value="Australia">Australia</option>
+<option value="Austria">Austria</option>
+<option value="Belarus">Belarus</option>
+<option value="Belgium">Belgium</option>
+<option value="Bolivia">Bolivia</option>
+<option value="Bosnia">Bosnia</option>
+<option value="Brazil">Brazil</option>
+<option value="Bulgaria">Bulgaria</option>
+<option value="Canada">Canada</option>
+<option value="Chile">Chile</option>
+<option value="China">China</option>
+<option value="Colombia">Colombia</option>
+<option value="Croatia">Croatia</option>
+<option value="Cyprus">Cyprus</option>
+<option value="Czech Republic">Czech Republic</option>
+<option value="Czechoslavakia">Czechoslavakia</option>
+<option value="Denmark">Denmark</option>
+<option value="England">England</option>
+<option value="Estonia">Estonia</option>
+<option value="Finland">Finland</option>
+<option value="France">France</option>
+<option value="Georgia">Georgia</option>
+<option value="Germany">Germany</option>
+<option value="Greece">Greece</option>
+<option value="Holland">Holland</option>
+<option value="Hong Kong">Hong Kong</option>
+<option value="Hungary">Hungary</option>
+<option value="Iceland">Iceland</option>
+<option value="India">India</option>
+<option value="Indonesia">Indonesia</option>
+<option value="Iran">Iran</option>
+<option value="Iraq">Iraq</option>
+<option value="Ireland">Ireland</option>
+<option value="Israel">Israel</option>
+<option value="Italy">Italy</option>
+<option value="Japan">Japan</option>
+<option value="Leichenstein">Leichenstein</option>
+<option value="Lithuania">Lithuania</option>
+<option value="Luxembourg">Luxembourg</option>
+<option value="Malaysia">Malaysia</option>
+<option value="Malta">Malta</option>
+<option value="Mexico">Mexico</option>
+<option value="Morocco">Morocco</option>
+<option value="Nauru">Nauru</option>
+<option value="Netherlands">Netherlands</option>
+<option value="New Zealand">New Zealand</option>
+<option value="North Vietnam">North Vietnam</option>
+<option value="Norway">Norway</option>
+<option value="Palestine">Palestine</option>
+<option value="Panama">Panama</option>
+<option value="Phillipines">Phillipines</option>
+<option value="Poland">Poland</option>
+<option value="Portugal">Portugal</option>
+<option value="Puerto Rico">Puerto Rico</option>
+<option value="Qatar">Qatar</option>
+<option value="Romania">Romania</option>
+<option value="Rumania">Rumania</option>
+<option value="Russia">Russia</option>
+<option value="Scotland">Scotland</option>
+<option value="Singapore">Singapore</option>
+<option value="Slovakia">Slovakia</option>
+<option value="Slovenia">Slovenia</option>
+<option value="South Africa">South Africa</option>
+<option value="Spain">Spain</option>
+<option value="Sweden">Sweden</option>
+<option value="Switzerland">Switzerland</option>
+<option value="Thailand">Thailand</option>
+<option value="Turkey">Turkey</option>
+<option value="Ukraine">Ukraine</option>
+<option value="United Arab Emirates">United Arab Emirates</option>
+<option value="United Kingdom">United Kingdom</option>
+<option value="United States">United States</option>
+<option value="Uraguay">Uraguay</option>
+<option value="Vatican City State">Vatican City State</option>
+<option value="Vietnam">Vietnam</option>
+</select>
+ </fieldset>
+
+
+<h2>Selectmenu with custom avatar 16x16 images as CSS background</h2>
+  <fieldset>
+    <label for="avatar">Select a Person:</label>
+<select name="avatar" id="avatar">
+<option value="No avatar.gif">No avatar</option><option style="background-image:url(avatars/360NA_Squaw.gif);" value="360NA_Squaw.gif">360NA_Squaw</option>
+<option style="background-image:url(avatars/360na.png);" value="360na.png" selected="">360na</option>
+<option style="background-image:url(avatars/E E100.gif);" value="E E100.gif">E E100</option>
+
+<option data-class="avatar" data-style="background-image: url('avatars/E E100_4.gif');" value="E E100_4.gif">E E100_4</option>
+
+<option style="background-image:url(avatars/J Jagdtiger.gif);" value="J Jagdtiger.gif">J Jagdtiger</option>
+<option style="background-image:url(avatars/M M4.gif);" value="M M4.gif">M M4</option>
+<option style="background-image:url(avatars/M Maus.gif);" value="M Maus.gif">M Maus</option>
+<option style="background-image:url(avatars/P Panther II.gif);" value="P Panther II.gif">P Panther II</option>
+<option style="background-image:url(avatars/P Panther.gif);" value="P Panther.gif">P Panther</option>
+<option style="background-image:url(avatars/P Panzer IV G.gif);" value="P Panzer IV G.gif">P Panzer IV G</option>
+<option style="background-image:url(avatars/P Panzer IV H.gif);" value="P Panzer IV H.gif">P Panzer IV H</option>
+<option style="background-image:url(avatars/S Sturmtiger.gif);" value="S Sturmtiger.gif">S Sturmtiger</option>
+<option style="background-image:url(avatars/T T-34.gif);" value="T T-34.gif">T T-34</option>
+<option style="background-image:url(avatars/T T95.gif);" value="T T95.gif">T T95</option>
+<option style="background-image:url(avatars/T Tiger II.gif);" value="T Tiger II.gif">T Tiger II</option>
+<option style="background-image:url(avatars/T Tiger P.gif);" value="T Tiger P.gif">T Tiger P</option>
+<option style="background-image:url(avatars/T Tiger.gif);" value="T Tiger.gif">T Tiger</option>
+<option style="background-image:url(avatars/ace.jpg);" value="ace.jpg">ace</option>
+</select>
+  </fieldset>
+ 
+</form>
+ 
+</div>
+ 
+ 
+</body>
+</html>

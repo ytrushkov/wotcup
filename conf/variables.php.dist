@@ -1,0 +1,46 @@
+<?php
+define("TRIBAL_VERSION", "223"); // version number shown in footer. This = the revision number in SVN /trunk  Please change when you upgrade. Also add "Rev" in front of it if you customize the ladder code somehow and if you are not a part of the development team of tribal bliss. (we do however invite you to become so : ) 
+/*
+
+Please Notice: 	The only lines which you are supposed to config according to your own needs
+						are the ones where the comment has *** in it in the start.
+						The rest of the comments are just that - comments -  and not something which you should manipulate in any way. 
+*/
+
+//Multiladder settings
+  
+  $G_CFG_multiladder = true; // *** Switch to enable multiple ladders (true/false) ***
+  $G_CFG_default_ladder_id = "3v3"; // *** Id of the ladder you want to call by default, don't change it with only one ladder running!!! otherwise config-file is missing ***
+  
+  if ($G_CFG_multiladder == true){
+
+    $G_CFG_enabled_ladder_list = array(1 => '3v3', '7v7'); // *** Here the ladders that we want to include are listed. This is only active if the multiladder option is set to TRUE and it's important for the menu generation. Pay attention to the spelling of the names because it will use the exact name to grab the proper configfile for each ladder. Example: If the ladders name in the array list is set to "2vs2" then it would get the settings for that ladder from "/conf/2vs2_conf.php" ***
+  
+    //next lines are all about to grab the config file for the specific ladder.
+
+    //first, set session variable called ladder_id, point it to default ladder if it doesnt exist
+    if (!isset ($_SESSION['ladder_id'])){
+      $_SESSION['ladder_id'] = $G_CFG_default_ladder_id;
+    }
+    //if 'ladder' is set with url-parameter, change session variable according to it
+    if (isset ($_GET['ladder'])){
+      $_SESSION['ladder_id'] = $_GET['ladder'];
+    }
+    //finally include the configuration for the defined ladder
+    include($_SESSION['ladder_id'].'_conf.php');
+  }
+    else {
+      include($G_CFG_default_ladder_id.'_conf.php');
+    }
+
+  $G_CFG_enable_graph_creation = true; // *** Switch to enable graph generation (true/false) switch to turn off/on the automatically generated elo/game charts in the profile page (important: pChart uses GD library, so be sure its part of your PHP installation before enable it) ***
+  $G_CFG_pChartimagepath ="share/images/pChart/"; // dir for where the pChart generated graphs are stored. It should be writable.
+
+// CONFIG ENDS HERE! Don't edit anything beyond this line unless you know what your doing! ----------------------
+
+
+// variabledb.php used to connect to the database, I've added a temporary hack here to do that in the config file, it should be
+// moved somewhere more appropriate
+$db = mysql_connect($databaseserver, $databaseuser, $databasepass);
+mysql_select_db($databasename,$db);
+?>
