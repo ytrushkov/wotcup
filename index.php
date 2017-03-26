@@ -104,18 +104,15 @@ require('top.php');
 If (INDEX_COMMENT_HILITE == 1) {
 
 
-		$sql ="SELECT winner, loser, replay_filename is not null as is_replay, reported_on, winner_comment, loser_comment, winner_elo, loser_elo FROM $gamestable WHERE withdrawn = 0 AND contested_by_loser = 0  AND (winner_comment != '' || loser_comment != '') ORDER BY reported_on DESC LIMIT 0,1";
-		
-		$result = mysql_query($sql,$db);
-		$row = mysql_fetch_array($result);
-		
-		
+	$sql ="SELECT winner, loser, replay_filename is not null as is_replay, reported_on, winner_comment, loser_comment, winner_elo, loser_elo FROM $gamestable WHERE withdrawn = 0 AND contested_by_loser = 0  AND (winner_comment != '' || loser_comment != '') ORDER BY reported_on DESC LIMIT 0,1";
+	
+	$result = mysql_query($sql,$db);
+	$row = mysql_fetch_array($result);
+
 
 	echo "<div class=\"spotlight\"><h1 class=\"spotlight\">Spotlight</h1><br /> <b>".$row['winner']." (".$row['winner_elo'].") / ".$row['loser']." (".$row['loser_elo'].")</b>";
 
-	 if ($row['is_replay'] != 0) {
-				echo " <a href=\"download-replay.php?reported_on=$row[reported_on]\">®</a><br /><br />";
-			}
+
 
 	// We don't want to show the comments to members that are not logged in if comments are set to only display to logged in members...
 	if ((NONPUBLIC_REPLAY_COMMENTS == 0) || ((NONPUBLIC_REPLAY_COMMENTS == 1) && (isset($_SESSION['username'])))){
@@ -131,6 +128,26 @@ If (INDEX_COMMENT_HILITE == 1) {
 			}
 	} else { echo "<i>Please login to read game comments.</i>"; }
 	
+	if ($row['is_replay'] != 0) {
+		echo "
+		<!-- Trigger the Modal -->
+		<img id=\"myImg\" src=\"download-replay.php?reported_on=$row[reported_on]\"
+		alt=\"".$row['winner']." (".$row['winner_elo'].") / ".$row['loser']." (".$row['loser_elo'].")\" height=\"200\"
+		onclick=\"document.getElementById('myModal').style.display='block'\">
+		
+		<!-- The Modal -->
+		<div id=\"myModal\" class=\"modal\">
+		
+		  <!-- The Close Button -->
+		  <span class=\"close_button\" onclick=\"document.getElementById('myModal').style.display='none'\">&times;</span>
+		
+		  <!-- Modal Content (The Image) -->
+		  <img class=\"modal-content\" id=\"img01\" src=\"download-replay.php?reported_on=$row[reported_on]\">
+		
+		  <!-- Modal Caption (Image Text) -->
+		  <div id=\"caption\">".$row['winner']." (".$row['winner_elo'].") / ".$row['loser']." (".$row['loser_elo'].")</div>
+		</div>";
+	}
 	
 // Magic Commentator starts here ---------------------------------------------------------------
 if  ($MagicComGotEloSettings['Comments'] > 0){

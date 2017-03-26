@@ -116,7 +116,7 @@ if (isset($_POST['report'])) {
     
         $elo = new Elo($db);
         $result = $elo->ReportNewGame($winner, $loser, $draw);
-	$cloneresult = $result;
+    	$cloneresult = $result;
         if ($result === false) {
             $failure = true;
             $error = "There was a failure in reporting your game, please try again.";

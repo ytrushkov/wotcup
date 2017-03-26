@@ -12,9 +12,9 @@ if (mysql_num_rows($result) == 1) {
 		$filenamestrict = substr($filename,0,strrpos($filename,'.'));
 		$fileextension = substr($filename,strrpos($filename,'.'));
 		if ($row['winner'] > $row['loser'])
-			$filenameuser = $filenamestrict."_".$row['winner']."_vs_".$row['loser']."_wesnoth-ladder".$fileextension;
+			$filenameuser = $filenamestrict."_".$row['winner']."_vs_".$row['loser']."_wotcup-ladder".$fileextension;
 		else
-			$filenameuser = $filenamestrict."_".$row['loser']."_vs_".$row['winner']."_wesnoth-ladder".$fileextension;
+			$filenameuser = $filenamestrict."_".$row['loser']."_vs_".$row['winner']."_wotcup-ladder".$fileextension;
 		
     mysql_query("UPDATE $gamestable set replay_downloads = replay_downloads + 1 WHERE reported_on = '".$_GET['reported_on']."'", $db);
     header('Cache-control: public');

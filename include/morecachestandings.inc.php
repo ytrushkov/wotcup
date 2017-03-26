@@ -140,7 +140,7 @@ ORDER BY rating DESC, games DESC, wins ASC";
 
 $result = mysql_query($query);
 
-echo "<br> Whole query: ". $query;
+// echo "<br> Whole query: ". $query;
 
 if (!$result) {
     $message  = 'Invalid query: ' . mysql_error() . "\n";
