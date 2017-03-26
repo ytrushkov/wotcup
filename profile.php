@@ -322,7 +322,7 @@ if ($_SESSION['username'] == $_GET['name']) {
 	unset($user);
     ?>
     <a href='edit.php'><?php echo $player['name'];?> <?php echo $blocked;?>
-    <img border="0" src="../images/edit.gif" width="18" height="18" align="middle" alt="Edit"></a>
+    <img border="0" src="images/edit.gif" width="18" height="18" align="middle" alt="Edit"></a>
 	<div class = "message_alert">
 	    <div>
 		    <img src = "images/message.png" alt = "Private Messages" title = "Private Messages" />:&nbsp;
