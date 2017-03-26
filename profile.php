@@ -293,7 +293,17 @@ if ($playercached['name'] == "") {
 if ($_SESSION['username'] == $_GET['name']) {
     include_once('conf/config.php');
     include_once('include/entity.class.php');
-	$config = new Config();
+	//next lines are all about to grab the config file for the specific ladder.
+    //first, set session variable called ladder_id, point it to default ladder if it doesnt exist
+    if (!isset ($_SESSION['ladder_id'])){
+      $_SESSION['ladder_id'] = $G_CFG_default_ladder_id;
+    }
+    //if 'ladder' is set with url-parameter, change session variable according to it
+    if (isset ($_GET['ladder'])){
+      $_SESSION['ladder_id'] = $_GET['ladder'];
+    }
+    //finally include the configuration for the defined ladder
+    $config = new Config($_SESSION['ladder_id'].'_conf.php');
 	$user = new Entity($config, 'players', array('name', $_SESSION['username']));
 	$dbo = new DB($config);
 	$cond = new DB_Condition_List(array(
