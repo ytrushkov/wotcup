@@ -353,7 +353,7 @@ echo "<option>$row[HaveVersion]</option>";
 
 </table>
 
-<p><input type="Submit" name="submit" value="Submit." class="text"><br>
+<p><input type="Submit" name="submit" value="Submit" class="text"><br>
 
 </form>
 <?php
