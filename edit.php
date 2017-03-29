@@ -14,29 +14,26 @@ include 'include/countries.inc.php';
 // Lets check to see if there are Ladder cookies to see if the user is logged in. If so, we wont show the login box....
 // First we extract the info from the cookies... There are 2 of them, one containing username, other one the password.
 echo "<br /><h2>".$_SESSION['username']."</h2>";
-	
+
 if (isset($_POST['submit'])) {
 	// Lets generate the encrypted pass, after all, its the one thats stored in the database... we do it by applying the salt and hashing it twice.
 // We need to take the users real pass, "encrypt" it the same way we did when he registered, and then compare the results.
 // $salt is read from config file
 
 $passworddb2 = $salt.$_POST['passworddb'];
-$passworddb2 = md5($passworddb2); 
-$passworddb2 = md5($passworddb2); 
+$passworddb2 = md5($passworddb2);
+$passworddb2 = md5($passworddb2);
 
 
 
 
-	
-	
-	
+
+
+
 $sql="SELECT * FROM $playerstable WHERE name='".$_SESSION['username']."'";
 $result=mysql_query($sql,$db);
 $num = mysql_num_rows($result);
 if ($num > 0) {
-$msn = trim(strip_tags($_POST['msn']));
-$icq = trim(strip_tags($_POST['icq']));
-$aim = trim(strip_tags($_POST['aim']));
 $mail = trim(strip_tags($_POST['mail']));
 
 $_w_days = array('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun');
@@ -52,18 +49,18 @@ foreach($_w_days as $_week_day) {
 }
 
 
-// check if the user wants a new password than the old. 
+// check if the user wants a new password than the old.
 
     if ($_POST['newpassworddb'] == $_POST['newpassworddb2']) {
         // if the same new pass was entered twice he should get a new pass.... one will be generated now:
 	    if ($_POST['newpassworddb'] != "" && $_POST['newpassworddb2'] != "") {
 		    // Apparently he wants a new pass... let's compare the new pass verification:
 		    $newpassworddb = $salt.$_POST['newpassworddb'];
-            $newpassworddb = md5($newpassworddb); 
-            $newpassworddb = md5($newpassworddb); 
+            $newpassworddb = md5($newpassworddb);
+            $newpassworddb = md5($newpassworddb);
 		}
 	} else {
-        echo "New password verification didn't match. Please re-type and verify the new password."; 
+        echo "New password verification didn't match. Please re-type and verify the new password.";
         require('bottom.php');
         exit;
     }
@@ -72,9 +69,9 @@ foreach($_w_days as $_week_day) {
     // Depending on if he wants a new pass or wants to keep the old we need 2 different sql queries...
     // An administrator can impersonate a user and update information about them without entering the original password.
     if (isset($newpassworddb) && ($newpassworddb && $newpassworddb != ""))  {
-        $sql = "UPDATE $playerstable SET mail = '$mail', icq = '$icq', aim = '$aim', msn = '$msn', country = '".$_POST['country']."', Avatar = '".$_POST['avatar']."', MsgMe = '".$_POST['msgme']."', HaveVersion = '".$_POST['version']."', CanPlay = '$CanPlay', Jabber = '".$_POST['jabber']."', passworddb = '$newpassworddb' WHERE name='".$_SESSION['username']."' AND (passworddb = '$passworddb2' OR '".$_SESSION['real-username']."' <> '".$_SESSION['username']."')"; 
+        $sql = "UPDATE $playerstable SET mail = '$mail', country = '".$_POST['country']."', Avatar = '".$_POST['avatar']."', MsgMe = '".$_POST['msgme']."', HaveVersion = '".$_POST['version']."', CanPlay = '$CanPlay', Jabber = '".$_POST['jabber']."', passworddb = '$newpassworddb' WHERE name='".$_SESSION['username']."' AND (passworddb = '$passworddb2' OR '".$_SESSION['real-username']."' <> '".$_SESSION['username']."')";
     } else {
-        $sql = "UPDATE $playerstable SET mail = '$mail', icq = '$icq', aim = '$aim', msn = '$msn', country = '".$_POST['country']."', Avatar = '".$_POST['avatar']."', MsgMe = '".$_POST['msgme']."', HaveVersion = '".$_POST['version']."', CanPlay = '$CanPlay', Jabber = '".$_POST['jabber']."' WHERE name='".$_SESSION['username']."' AND (passworddb = '$passworddb2' OR '".$_SESSION['real-username']."' <> '".$_SESSION['username']."')"; 
+        $sql = "UPDATE $playerstable SET mail = '$mail', country = '".$_POST['country']."', Avatar = '".$_POST['avatar']."', MsgMe = '".$_POST['msgme']."', HaveVersion = '".$_POST['version']."', CanPlay = '$CanPlay', Jabber = '".$_POST['jabber']."' WHERE name='".$_SESSION['username']."' AND (passworddb = '$passworddb2' OR '".$_SESSION['real-username']."' <> '".$_SESSION['username']."')";
     }
     $result = mysql_query($sql);
     echo "<p class='text'>Profile is now updated.<br><a href='profile.php?name=".$_SESSION['username']."'>Go back to your profile.</a></p>";
@@ -126,23 +123,10 @@ $row = mysql_fetch_array($result);
 <td><p class="text">Jabber:</p></td>
 <td><input type="Text" name="jabber" value="<?php echo $row['Jabber'] ?>" class="text"> Open source, Same as g-mail chat.</td>
 </tr>
-
-<tr>
-<td><p class="text">Icq:</p></td>
-<td><input type="Text" name="icq" value="<?php echo $row['icq'] ?>" class="text"></td>
-</tr>
-<tr>
-<td><p class="text">Aim:</p></td>
-<td><input type="Text" name="aim" value="<?php echo $row['aim'] ?>" class="text"></td>
-</tr>
-<tr>
-<td><p class="text">Msn:</p></td>
-<td><input type="Text" name="msn" value="<?php echo $row['msn'] ?>" class="text"></td>
-</tr>
 <tr>
 
 
-<!–– YTrushkov
+<!–– TODO: YTrushkov
 move to appropriate place later
 ––>
 
@@ -156,27 +140,27 @@ move to appropriate place later
       _renderItem: function( ul, item ) {
         var li = $( "<li>" ),
           wrapper = $( "<div>", { text: item.label } );
- 
+
         if ( item.disabled ) {
           li.addClass( "ui-state-disabled" );
         }
- 
+
         $( "<span>", {
           style: item.element.attr( "data-style" ),
           "class": "ui-icon " + item.element.attr( "data-class" )
         })
           .appendTo( wrapper );
- 
+
         return li.append( wrapper ).appendTo( ul );
       }
     });
- 
- 
+
+
     $( "#country_select" )
       .iconselectmenu()
       .iconselectmenu( "menuWidget" )
         .addClass( "ui-menu-icons country" );
- 
+
   } );
   </script>
   <style>
@@ -184,14 +168,14 @@ move to appropriate place later
     .ui-menu-icons .ui-menu-item-wrapper {
        padding-left: 2em;
     }
-   
+
     .ui-selectmenu-menu .ui-menu {
        max-height: 300px;
     }
- 
+
     /* select with CSS country icons */
     option.country {
-      background-repeat: no-repeat !important;      
+      background-repeat: no-repeat !important;
       padding-left: 24px;
     }
     .country .ui-icon {
@@ -208,8 +192,8 @@ move to appropriate place later
       echo "<option data-class='country' data-style=\"background-image:url('graphics/flags/No Country.bmp');\" value='No Country'>No Country</option>";
 
       $countries = countriesList();
-      
-      asort($countries);    
+
+      asort($countries);
 
       foreach ($countries as $key => $data) {
         if ($key !== "No Country") {
@@ -227,8 +211,8 @@ move to appropriate place later
       // Force No avatar to the top
       echo "<option value='No avatar.gif'>No avatar</option>";
       $avatars = avatarList();
-      
-      asort($avatars);    
+
+      asort($avatars);
 
       foreach ($avatars as $key => $data) {
         if ($key !== "No avatar") {
@@ -237,7 +221,7 @@ move to appropriate place later
       }
 
 
-    
+
 ?>
 </select></td></tr>
 
@@ -248,8 +232,8 @@ move to appropriate place later
 <tr><td><p class="text"><b>Console:</b></p></td>
 
 <td>&nbsp;<select size="1" name="version" class="text">
-<?php 
-echo "<option>$row[HaveVersion]</option>"; 
+<?php
+echo "<option>$row[HaveVersion]</option>";
 ?>
 <option>XBOX</option>
 <option>PS4</option>
@@ -344,7 +328,7 @@ echo "<option>$row[HaveVersion]</option>";
 </tr>
 
 <tr>
-<td bgcolor="#E7D9C0">Sunday</td> 
+<td bgcolor="#E7D9C0">Sunday</td>
 <td bgcolor="#E7D9C0"><input type="checkbox" name="SunM" value="SunM" <?php $pos1 = strpos("$row[CanPlay]", "SunM"); if ($pos1 != FALSE) { echo "checked"; }?>/></td>
 <td bgcolor="#E7D9C0"><input type="checkbox" name="SunN" value="SunN" <?php $pos1 = strpos("$row[CanPlay]", "SunN"); if ($pos1 != FALSE) { echo "checked"; }?>/></td>
 <td bgcolor="#E7D9C0"><input type="checkbox" name="SunA" value="SunA" <?php $pos1 = strpos("$row[CanPlay]", "SunA"); if ($pos1 != FALSE) { echo "checked"; }?>/></td>
