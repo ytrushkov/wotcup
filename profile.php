@@ -234,7 +234,8 @@ if ($playercached['games'] <= 0) {
 <tr>
 <td valign="top">
 
-<h1><?php
+<h1>
+<?php
 
 if ($player['Confirmation'] == "Deleted") {
 	echo "<h2>The  account  of ". $player['name'] ." is deleted...</h2>For some reason the user or admin has deleted the account you are looking for. It's statistics and other info is <i>preserved</i> and the account can be re-activated by it's owner. We have however decided not to share the info of deleted accounts, thus it is not public. Please contact the admin if you wish to undelete your deleted account. <br><br>";
@@ -292,6 +293,7 @@ if ($_SESSION['username'] == $_GET['name']) {
     ?>
     <a href='edit.php'><?php echo $player['name'];?> <?php echo $blocked;?>
     <img border="0" src="images/edit.gif" width="18" height="18" align="middle" alt="Edit"></a>
+    <?php echo "&nbsp;&nbsp;<img src='graphics/flags/".$player['country'].".bmp' align='middle' border='1' alt='' /> ".$player['country']; ?>
 	<div class = "message_alert">
 	    <div>
 		    <img src = "images/message.png" alt = "Private Messages" title = "Private Messages" />:&nbsp;
@@ -303,11 +305,10 @@ if ($_SESSION['username'] == $_GET['name']) {
     <div style = "clear: both;">
     </div>
 	<?php
-}
-else {
-    echo $_GET['name'],"$blocked";
-}
-
+    }
+    else {
+        echo $_GET['name'],"$blocked","&nbsp;&nbsp;<img src='graphics/flags/".$player['country'].".bmp' align='middle' border='1' alt='' /> ".$player['country'];
+    }
 
 ?>
 </h1>
@@ -328,8 +329,7 @@ if ( (isset($player["provisional"])) && ($player["provisional"]  == "1" )) {
 
 // Show info about players activity...
 
-
-	// Set the message about how many days we have until passive...
+// Set the message about how many days we have until passive...
 
 if ($ExactActivity["DaysUntilPassive"] == 0) {
 	$buffertdays = "Last day today";
@@ -368,11 +368,9 @@ require_once 'include/elo.class.php';
 </td>
 <td valign="top">
 <?php
-       echo "<img src='avatars/".$player['Avatar']."' alt='".$player['Avatar']."'>";
-?>
-<?php
-	echo "<br/> <p class='text'><img src='graphics/flags/".$player['country'].".bmp' align='middle' border='1' alt='' /> ".$player['country']."</p>";
+    echo "<img src='avatars/".$player['Avatar']."' alt='".$player['Avatar']."'>";
 
+	// echo "<br/> <p class='text'><img src='graphics/flags/".$player['country'].".bmp' align='middle' border='1' alt='' /> ".$player['country']."</p>";
 
 ?>
 
@@ -476,9 +474,9 @@ if (($SportsmanshipRatedAsLoser+$SportsmanshipRatedAsWinner) > 0) {
 // Avoid division by zero problems...
 
 if ($playercached['games'] > 0) {
-echo sprintf("%0.0f%% (%d / %d / %d)",($withdrawn+$contestedByOthers+$contested)/($playercached['games']+$withdrawn+$contestedByOthers+$contested)*100, $withdrawn, $contestedByOthers, $contested);
+    echo sprintf("%0.0f%% (%d / %d / %d)",($withdrawn+$contestedByOthers+$contested)/($playercached['games']+$withdrawn+$contestedByOthers+$contested)*100, $withdrawn, $contestedByOthers, $contested);
 } else {
-echo "-";
+    echo "-";
 }
 
 ?></td>
@@ -516,8 +514,6 @@ while ($titlefound == 0) {
 
 }
 
-?>
-<?php
 // The following table and stuff should only be shown / happen if the ladder uses the XP system. It can be enabled/disabled in the config file.
 if (XP_SYS_ENABLED == 1) { ?>
 <table class="tablesorter">
@@ -567,11 +563,6 @@ if ($_SESSION['username'] && $player['MsgMe'] == "Yes") {
 </tbody>
 </table>
 
-<?php // Couldn't remove this php bracket without breaking things
- {
-?>
-
-
 <?php
 
 if ($player['CanPlay'] != "") { ?>
@@ -619,12 +610,11 @@ foreach($days as $name => $abbrev) {
 		if ($pos1 != FALSE) {echo "<img border=\"0\" height='20px' src=\"images/streakplus.gif\" />";} ?></td>
 	</tr>
 
-	<?php } ?>
+	<?php } ?> // edn of foreach
     </tbody>
 	</table>
     </div>
-	<?php } ?>
-<?php }
+<?php }  // end of if
 
 // Only show game history & opposition break down if there are any played games...
 
