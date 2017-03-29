@@ -20,114 +20,114 @@ if (isset ($_POST['submit'])) {
 	$WesVersion = $_POST['version'];
 	$MsgMeToPlay = $_POST['msgme'];
 	$length = strlen($name);
-	
+
 	if (isset($_POST['MonM']) != "") {$CanPlay = "$CanPlay $_POST[MonM]";}
 	if (isset($_POST['MonN']) != "") {$CanPlay = "$CanPlay $_POST[MonN]";}
 	if (isset($_POST['MonA']) != "") {$CanPlay = "$CanPlay $_POST[MonA]";}
 	if (isset($_POST['MonE']) != "") {$CanPlay = "$CanPlay $_POST[MonE]";}
 	if (isset($_POST['MonNi']) != "") {$CanPlay = "$CanPlay $_POST[MonNi]";}
-	
+
 	if (isset($_POST['TueM']) != "") {$CanPlay = "$CanPlay $_POST[TueM]";}
 	if (isset($_POST['TueN']) != "") {$CanPlay = "$CanPlay $_POST[TueN]";}
 	if (isset($_POST['TueA']) != "") {$CanPlay = "$CanPlay $_POST[TueA]";}
 	if (isset($_POST['TueE']) != "") {$CanPlay = "$CanPlay $_POST[TueE]";}
 	if (isset($_POST['TueNi']) != "") {$CanPlay = "$CanPlay $_POST[TueNi]";}
-	
+
 	if (isset($_POST['WedM']) != "") {$CanPlay = "$CanPlay $_POST[WedM]";}
 	if (isset($_POST['WedN']) != "") {$CanPlay = "$CanPlay $_POST[WedN]";}
 	if (isset($_POST['WedA']) != "") {$CanPlay = "$CanPlay $_POST[WedA]";}
 	if (isset($_POST['WedE']) != "") {$CanPlay = "$CanPlay $_POST[WedE]";}
 	if (isset($_POST['WedNi']) != "") {$CanPlay = "$CanPlay $_POST[WedNi]";}
-	
+
 	if (isset($_POST['ThuM']) != "") {$CanPlay = "$CanPlay $_POST[ThuM]";}
 	if (isset($_POST['ThuN']) != "") {$CanPlay = "$CanPlay $_POST[ThuN]";}
 	if (isset($_POST['ThuA']) != "") {$CanPlay = "$CanPlay $_POST[ThuA]";}
 	if (isset($_POST['ThuE']) != "") {$CanPlay = "$CanPlay $_POST[ThuE]";}
 	if (isset($_POST['ThuNi']) != "") {$CanPlay = "$CanPlay $_POST[ThuNi]";}
-	
-		
+
+
 	if (isset($_POST['FriM']) != "") {$CanPlay = "$CanPlay $_POST[FriM]";}
 	if (isset($_POST['FriN']) != "") {$CanPlay = "$CanPlay $_POST[FriN]";}
 	if (isset($_POST['FriA']) != "") {$CanPlay = "$CanPlay $_POST[FriA]";}
 	if (isset($_POST['FriE']) != "") {$CanPlay = "$CanPlay $_POST[FriE]";}
 	if (isset($_POST['FriNi']) != "") {$CanPlay = "$CanPlay $_POST[FriNi]";}
-			
+
 	if (isset($_POST['SatM']) != "") {$CanPlay = "$CanPlay $_POST[SatM]";}
 	if (isset($_POST['SatN']) != "") {$CanPlay = "$CanPlay $_POST[SatN]";}
 	if (isset($_POST['SatA']) != "") {$CanPlay = "$CanPlay $_POST[SatA]";}
 	if (isset($_POST['SatE']) != "") {$CanPlay = "$CanPlay $_POST[SatE]";}
 	if (isset($_POST['SatNi']) != "") {$CanPlay = "$CanPlay $_POST[SatNi]";}
-		
+
 	if (isset($_POST['SunM']) != "") {$CanPlay = "$CanPlay $_POST[SunM]";}
 	if (isset($_POST['SunN']) != "") {$CanPlay = "$CanPlay $_POST[SunN]";}
 	if (isset($_POST['SunA']) != "") {$CanPlay = "$CanPlay $_POST[SunA]";}
 	if (isset($_POST['SunE']) != "") {$CanPlay = "$CanPlay $_POST[SunE]";}
-	if (isset($_POST['SunNi']) != "") {$CanPlay = "$CanPlay $_POST[SunNi]";}		
-		
-	
+	if (isset($_POST['SunNi']) != "") {$CanPlay = "$CanPlay $_POST[SunNi]";}
+
+
 	if ($passworddb == "") {
 		echo "Please enter a password.";
 	}
-	
+
 	else if (strtolower($name) == 'system') {
 	    echo "Sorry, but <strong>$name</strong> is reserved name!";
 	}
-	
-	
+
+
 	else if ($passworddb != $passworddb2) {	echo "Passwords don't match. Please retype the passwords..<br>";	}
-	
-	else if ($mail == "") { 
+
+	else if ($mail == "") {
 		if (REG_MAILVERIFICATION == 1) {	echo "Please enter a valid email. An activation link will be sent to it.<br>"; } else {
 				echo "Please enter a valid email. No spam will be sent.<br>";
 			}
 	}
-	
+
 	else if ( $WesVersion == "") { echo "You must specify which Console(s) you're using...<br>"; }
-	
+
 	else if ($name == "") { echo "Please enter your clan tag."; }
-	
+
 	else if (($length > REG_MAX_NICKLENGTH) || ($length < REG_MIN_NICKLENGTH)) { echo "The name you entered is invalid. It must be ".  REG_MIN_NICKLENGTH ." to ". REG_MAX_NICKLENGTH ." characters long.<br />Please go back to correct the error by selecting a different username."; }
-	
+
 	else if (!preg_match("/^[a-zA-Z0-9\-\_]+$/i", $name)) { echo "You're only allowed to use standard aA-zZ 0-9 alfanumerical characters and the - and _ signs. <br>Please enter a valid WoT clan tag.";	}
-	
-	
+
+
 	// If we pass the errorchecking this happens:
 	else {
-	
+
 	if (REG_MAILVERIFICATION == 1) {
 		// Random confirmation code
 		$confirm_code=md5(uniqid(rand()));
 	} else {
-		$confirm_code = "Ok"; 
+		$confirm_code = "Ok";
 		// if we dont have mail confirmation enabled in the config we will "autoverify" the user by setting him to "Ok" in the Confirmation rown in the players table.
 	}
 
 	// Lets generate the encrypted pass... we do it by applying the salt and hashing it twice.
 	$emailthispass = $passworddb;
 	$passworddb = $salt.$passworddb;
-	$passworddb = md5($passworddb); 
-	$passworddb = md5($passworddb); 	
+	$passworddb = md5($passworddb);
+	$passworddb = md5($passworddb);
 
 	$sql="SELECT * FROM $playerstable WHERE name = '$name'";
 	$result=mysql_query($sql,$db);
 	$samenick = mysql_num_rows($result);
-			
+
 			// If we didnt find a user with the same nick the following happens:
-			
+
 			if ($samenick < 1) {
-				
+
 				if ($approve == 'yes') { $approved = 'no'; }
 				else { $approved = 'yes'; }
-				
+
 				if (getenv("HTTP_X_FORWARDED_FOR")) { $ip = getenv("HTTP_X_FORWARD_FOR"); }
 				else { $ip = getenv("REMOTE_ADDR"); }
-				
+
 				$sql = "INSERT INTO $playerstable (name, passworddb, mail, icq, aim, msn, country, approved, ip, avatar, HaveVersion, MsgMe, Confirmation, CanPlay) VALUES ('$name', '$passworddb', '$mail','$icq','$aim', '$msn', '$_POST[country]', '$approved', '$ip', '$_POST[avatar]', '$WesVersion', '$MsgMeToPlay', '$confirm_code', '$CanPlay')";
 				$result = mysql_query($sql);
-				
+
 				if (REG_MAILVERIFICATION == 1) {
 					echo "An activation mail has been sent to your mail. To activate your account <b>you must click the link</b> that is within it. <br /><br />If you have not recieved the mail within an hour <b>please check your spam box</b> or contact us.";
-							
+
 					// if suceesfully inserted data into database, send confirmation link to email
 					if($result){
 						// ---------------- SEND MAIL FORM ----------------
@@ -160,7 +160,7 @@ if (isset ($_POST['submit'])) {
 						// send email
 						$sentmail = send_mail($to, $body, $subject, $laddermailsender, $titlebar);
 					}
-				
+
 
 				// if not found
 				else { echo "Your mail wasn't found in our database."; }
@@ -168,11 +168,11 @@ if (isset ($_POST['submit'])) {
 			// if your email succesfully sent
 				if($sentmail){}
 				else { echo "Failed to send activation link to your e-mail address. Contact admin if the problem remains tomorrow."; }
-				
+
 				} else if ( REG_MAILVERIFICATION == 0) { echo "<br /> <img align='center' src='graphics/activated.jpg' />"; }
-			
+
 			} else { echo "The name you entered already exists. Please select another name."; }
-		
+
 
 	}
 }
@@ -205,23 +205,8 @@ else{
 				echo "Please enter a valid email. No spam will be sent.<br>"; } ?></td>
 </tr>
 <tr>
-<td>
-<p class="text">ICQ:</p></td>
-<td>&nbsp;<input type="Text" name="icq" value="n/a" class="text"></td>
-</tr>
-<tr>
-<td>
-<p class="text">Aim:</p></td>
-<td>&nbsp;<input type="Text" name="aim" value="n/a" class="text"></td>
-</tr>
-<tr>
-<td><p class="text">Msn:</p></td>
-<td>&nbsp;<input type="Text" name="msn" value="n/a" class="text"></td>
-</tr>
 
-<tr>
-
-<!–– YTrushkov
+<!–– TODO: YTrushkov
 move to appropriate place later
 ––>
 
@@ -235,27 +220,27 @@ move to appropriate place later
       _renderItem: function( ul, item ) {
         var li = $( "<li>" ),
           wrapper = $( "<div>", { text: item.label } );
- 
+
         if ( item.disabled ) {
           li.addClass( "ui-state-disabled" );
         }
- 
+
         $( "<span>", {
           style: item.element.attr( "data-style" ),
           "class": "ui-icon " + item.element.attr( "data-class" )
         })
           .appendTo( wrapper );
- 
+
         return li.append( wrapper ).appendTo( ul );
       }
     });
- 
- 
+
+
     $( "#country_select" )
       .iconselectmenu()
       .iconselectmenu( "menuWidget" )
         .addClass( "ui-menu-icons country" );
- 
+
   } );
   </script>
   <style>
@@ -263,14 +248,14 @@ move to appropriate place later
     .ui-menu-icons .ui-menu-item-wrapper {
        padding-left: 2em;
     }
-   
+
     .ui-selectmenu-menu .ui-menu {
        max-height: 300px;
     }
- 
+
     /* select with CSS country icons */
     option.country {
-      background-repeat: no-repeat !important;      
+      background-repeat: no-repeat !important;
       padding-left: 24px;
     }
     .country .ui-icon {
@@ -287,8 +272,8 @@ move to appropriate place later
       echo "<option data-class='country' data-style=\"background-image:url('graphics/flags/No Country.bmp');\" value='No Country'>No Country</option>";
 
       $countries = countriesList();
-      
-      asort($countries);    
+
+      asort($countries);
 
       foreach ($countries as $key => $data) {
         if ($key !== "No Country") {
@@ -308,8 +293,8 @@ move to appropriate place later
       // Force No avatar to the top
       echo "<option value='No avatar.gif'>No avatar</option>";
       $avatars = avatarList();
-      
-      asort($avatars);    
+
+      asort($avatars);
 
       foreach ($avatars as $key => $data) {
         if ($key !== "No avatar") {
@@ -405,13 +390,13 @@ move to appropriate place later
 <td>Saturday</td>
 <td><input type="checkbox" name="SatM" value="SatM" /></td>
 <td><input type="checkbox" name="SatN" value="SatN" /></td>
-<td><input type="checkbox" name="SatA" value="SatA" /></td> 
-<td><input type="checkbox" name="SatE" value="SatE" /></td> 
+<td><input type="checkbox" name="SatA" value="SatA" /></td>
+<td><input type="checkbox" name="SatE" value="SatE" /></td>
 <td><input type="checkbox" name="SatNi" value="SatG" /></td>
 </tr>
 
 <tr>
-<td bgcolor="#E7D9C0">Sunday</td> 
+<td bgcolor="#E7D9C0">Sunday</td>
 <td bgcolor="#E7D9C0"><input type="checkbox" name="SunM" value="SunM" /></td>
 <td bgcolor="#E7D9C0"><input type="checkbox" name="SunN" value="SunN" /></td>
 <td bgcolor="#E7D9C0"><input type="checkbox" name="SunA" value="SunA" /></td>
@@ -445,7 +430,7 @@ function send_mail($to, $body, $subject, $fromaddress, $fromname)
 
   # Open the first part of the mail
   $msg = "--".$mime_boundary.$eol;
- 
+
   $htmlalt_mime_boundary = $mime_boundary."_htmlalt"; //we must define a different MIME boundary for this section
   # Setup for text OR html -
   $msg .= "Content-Type: multipart/alternative; boundary=\"".$htmlalt_mime_boundary."\"".$eol.$eol;
@@ -469,13 +454,13 @@ function send_mail($to, $body, $subject, $fromaddress, $fromname)
 
   # Finished
   $msg .= "--".$mime_boundary."--".$eol.$eol;  // finish with two eol's for better security. see Injection.
- 
+
   # SEND THE EMAIL
   ini_set(sendmail_from,$fromaddress);  // the INI lines are to force the From Address to be used !
   $mail_sent = mail($to, $subject, $msg, $headers);
- 
+
   ini_restore(sendmail_from);
- 
+
   return $mail_sent;
 }
 
