@@ -13,9 +13,6 @@ if (isset ($_POST['submit'])) {
 	$name = trim(strip_tags($_POST['name']));
 	$passworddb = trim(strip_tags($_POST['passworddb']));
 	$passworddb2 = trim(strip_tags($_POST['passworddb2']));
-	$msn = trim(strip_tags($_POST['msn']));
-	$icq = trim(strip_tags($_POST['icq']));
-	$aim = trim(strip_tags($_POST['aim']));
 	$mail = trim(strip_tags($_POST['mail']));
 	$WesVersion = $_POST['version'];
 	$MsgMeToPlay = $_POST['msgme'];
@@ -122,7 +119,7 @@ if (isset ($_POST['submit'])) {
 				if (getenv("HTTP_X_FORWARDED_FOR")) { $ip = getenv("HTTP_X_FORWARD_FOR"); }
 				else { $ip = getenv("REMOTE_ADDR"); }
 
-				$sql = "INSERT INTO $playerstable (name, passworddb, mail, icq, aim, msn, country, approved, ip, avatar, HaveVersion, MsgMe, Confirmation, CanPlay) VALUES ('$name', '$passworddb', '$mail','$icq','$aim', '$msn', '$_POST[country]', '$approved', '$ip', '$_POST[avatar]', '$WesVersion', '$MsgMeToPlay', '$confirm_code', '$CanPlay')";
+				$sql = "INSERT INTO $playerstable (name, passworddb, mail, country, approved, ip, avatar, HaveVersion, MsgMe, Confirmation, CanPlay) VALUES ('$name', '$passworddb', '$mail', '$_POST[country]', '$approved', '$ip', '$_POST[avatar]', '$WesVersion', '$MsgMeToPlay', '$confirm_code', '$CanPlay')";
 				$result = mysql_query($sql);
 
 				if (REG_MAILVERIFICATION == 1) {
