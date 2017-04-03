@@ -6,7 +6,7 @@ require_once 'logincheck.inc.php';
 
 require 'top.php';
 
-// If he presses the form button... 
+// If he presses the form button...
 if ($_POST["sent"]) {
     $amail = trim(strip_tags($_POST["sent"]));
 
@@ -17,9 +17,9 @@ if ($_POST["sent"]) {
         exit;
     } else {
 		// If there is a message we proceed with the email sending....
-				
+
 		// Get challenger info again
-		$sql="SELECT *, (SELECT CASE WHEN g.winner = a.name THEN g.winner_elo ELSE g.loser_elo END as rating 
+		$sql="SELECT *, (SELECT CASE WHEN g.winner = a.name THEN g.winner_elo ELSE g.loser_elo END as rating
                           FROM $gamestable g WHERE contested_by_loser = 0 AND withdrawn = 0 AND
                                (a.name = g.winner OR a.name = g.loser) ORDER BY reported_on DESC LIMIT 1) as rating
                 FROM $playerstable a WHERE name = '".$_SESSION['username']."'";
@@ -28,7 +28,7 @@ if ($_POST["sent"]) {
 		$row = mysql_fetch_array($result);
 
 		// Get challenged info that was sent after pressing the button... [challenged2]
-		$sql2="SELECT *, (SELECT CASE WHEN g.winner = a.name THEN g.winner_elo ELSE g.loser_elo END as rating 
+		$sql2="SELECT *, (SELECT CASE WHEN g.winner = a.name THEN g.winner_elo ELSE g.loser_elo END as rating
                           FROM $gamestable g WHERE contested_by_loser = 0 AND withdrawn = 0 AND
                                (a.name = g.winner OR a.name = g.loser) ORDER BY reported_on DESC LIMIT 1) as rating
                  FROM $playerstable a WHERE name = '$_GET[challenged2]'";
@@ -56,13 +56,13 @@ if ($_POST["sent"]) {
 				   echo 'Message was not sent. Please contact admin with a copy of the error message if the problem reamains for more than 2 days.';
 				   echo 'Mailer error: ' . $mail->ErrorInfo;
 						include('bottom.php');
-							exit;   
+							exit;
 				}
 				else
 				{
 				   echo '<br><br>The mail was sent. Please <i>don\'t send more than one</i> if he/she doesn\'t reply. It\'s also a good idea to join the Ladder Discord to find matches.';
 					include('bottom.php');
-					exit;      
+					exit;
 				}
 
 
@@ -72,7 +72,7 @@ if ($_POST["sent"]) {
 
 		// If there is a message it's time to finally send the mail...
 	}
-		
+
 }
 // End of what happens when a user presses submit button
 
@@ -91,11 +91,11 @@ $row2 = mysql_fetch_array($result2);
 <table>
 
 <tr>
-<td><h2 valign="bottom"><?php echo $row['name']." (".$row['rating'].")";?>&nbsp;<img src='avatars/<?php echo "$row[Avatar].gif'";?>></h2></td>
+<td><h2 valign="bottom"><?php echo $row['name']." (".$row['rating'].")";?>&nbsp;<img src='avatars/<?php echo "$row[Avatar]'";?>></h2></td>
 
 <td><h2 valign="bottom">&nbsp;&nbsp;&nbsp;  vs. &nbsp;&nbsp;&nbsp; </h2></td>
 
-<td><h2 valign="bottom"><img src='avatars/<?php echo "$row2[Avatar].gif'";?>> &nbsp;<?php echo "$row2[name] ($row2[rating])";?></h2></td>
+<td><h2 valign="bottom"><img src='avatars/<?php echo "$row2[Avatar]'";?>> &nbsp;<?php echo "$row2[name] ($row2[rating])";?></h2></td>
 </tr>
 
 </table>

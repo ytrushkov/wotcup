@@ -8,8 +8,8 @@ require('top.php');
 if (isset($_GET['personalladder'])) {
 	$personalladder =  $_GET['personalladder'] ;
 	} else {$personalladder = "";}
-	
-$archivemsg = "";	
+
+$archivemsg = "";
 if (isset($_GET['archive'])) {
 	// If player wants to view an archived version of the ladder we need to fetch another table and perhaps get it from another database. The table name is the date when the ranking is from in the following format: YYYY_MM_DD
 	$standingscachetable = $historydatabasename.".".$_GET['archive'];
@@ -20,20 +20,20 @@ if (isset($_GET['archive'])) {
 
 ?>
 <script type="text/javascript">
-$(document).ready(function() 
-    { 
-        $("#ladder").tablesorter({sortList: [[0,0]], widgets: ['zebra'] }); 
-    } 
-); 
+$(document).ready(function()
+    {
+        $("#ladder").tablesorter({sortList: [[0,0]], widgets: ["zebra"] });
+    }
+);
 </script>
 <?php
 
-// Get everyones ranking for the ladderfrom the standings cache table. There is no need for narrowing down the sql more with criterion for minimum elo and games played in total etc since the cache table has already taken care of all that. 
+// Get everyones ranking for the ladderfrom the standings cache table. There is no need for narrowing down the sql more with criterion for minimum elo and games played in total etc since the cache table has already taken care of all that.
 
 // Fetch players rank...
 
 $result=mysql_query("SELECT *
-FROM  $standingscachetable 
+FROM  $standingscachetable
 WHERE recently_played > '0'
 AND rank != '0' AND name = '$personalladder'
 ORDER BY rank ASC");
@@ -42,13 +42,13 @@ $personalrow = mysql_fetch_array($result);
 unset($myrank); // Why is this done?
 
 $myrank = $personalrow['rank'];
-    
+
 // If player is not ranked the custom version of the ladder shouldn't be displayed...
 if ($myrank == "") { $personalladder = ""; }
 
 ?>
 <h2><?php echo $personalladder ." Ladder Standings $archivemsg</h2>";?>
-<h2><?php echo $_SESSION['ladder_id']; ?></h2> 
+<h2><?php echo $_SESSION['ladder_id']; ?></h2>
 
 <table id="ladder" class="tablesorter">
 <thead>
@@ -77,7 +77,7 @@ $RanksAfterMe = $myrank + RANKED_BELOW_PERSONAL_LADDER;
 // Fetch the full ladder rankings list for everyone... also join it with the players table in order to get some crap info like what avatar etc they use.
 mysql_free_result($result);
 
-$result=mysql_query("SELECT * 
+$result=mysql_query("SELECT *
 FROM $standingscachetable
 JOIN $playerstable
 ON($standingscachetable.name=$playerstable.name)
@@ -101,7 +101,7 @@ $num_rows = mysql_num_rows($result);
 
 while ($ladderrow = mysql_fetch_array($result)) {
 	//var_dump($ladderrow);
-        
+
 /*
     if (isset($myrank) && ($cur < ($myrank - 10) || $cur > ($myrank + 10))) {
         $cur++;
@@ -130,10 +130,10 @@ echo '<tr class="myrow">';
 } else {
 ?>
 <tr>
-<?php 
+<?php
 }
 ?>
-<td><?php echo $ladderrow['rank'];?></td>	
+<td><?php echo $ladderrow['rank'];?></td>
 <td align="center"><?php echo "<img border='0' height='32px' src='avatars/".$ladderrow['Avatar']."' alt='avatar' />" ?>
 <a name="<?php echo $namepage ?>"></a></td>
 <td><?php echo "<a href='profile.php?name=".$ladderrow['name']."'>".$ladderrow['name'] ?></a> </td>
@@ -144,8 +144,8 @@ echo '<tr class="myrow">';
 <td><?php echo $ladderrow['games'] ?></td>
 <td><?php echo $ladderrow['streak'] ?></td>
 </tr>
-<?php 
-	
+<?php
+
 }
 ?>
 </tbody>
@@ -154,6 +154,6 @@ echo '<tr class="myrow">';
 <br>
 <p class="copyleft">To get a ranking and compete on the ladder a player needs > <?php echo "$gamestorank"; ?> games,  an Elo rating of >= <?php echo "$ladderminelo"; ?> & have played >= <?php echo " ". GAMES_FOR_ACTIVE ." "; ?>within <?php echo "$passivedays"; ?> days. Don't worry  if you haven't played for a while. All it takes is one game to become active again. Your rating doesn't decay while you are gone. 1500 is the rating of a <i>skilled average</i> player, new players will have less and vets more.</p>
 <br>
-<?php 
+<?php
 require('bottom.php');
 ?>

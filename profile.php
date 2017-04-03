@@ -11,9 +11,9 @@ date_default_timezone_set("$cfg_ladder_timezone");
 
 ?>
 <script type="text/javascript">
-$(document).ready(function() 
-    { 
-        $("#games").tablesorter({sortList: [[0,1]], widgets: ['zebra'] }); 
+$(document).ready(function()
+    {
+        $("#games").tablesorter({sortList: [[0,1]], widgets: ['zebra'] });
         // Set the values to the last used values
         if ($.cookie('profileplay') == "-") {
             $("#availabletoplayexpand").html("[-]");
@@ -33,8 +33,8 @@ $(document).ready(function()
             $("#gamesexpand2").html("[+]");
             $("#gamesdiv2").hide();
         }
- 
-        // Handle the toggle of playing expansion/collapse 
+
+        // Handle the toggle of playing expansion/collapse
         $("#availabletoplayexpand").click(function()
         {
             $("#availabletoplaydiv").slideToggle(600);
@@ -46,8 +46,8 @@ $(document).ready(function()
                $.cookie('profileplay', "-", {expires: 7});
             }
         });
- 
-        // Handle the toggle of games expansion/collapse 
+
+        // Handle the toggle of games expansion/collapse
         $("#gamesexpand").click(function()
         {
             $("#gamesdiv").slideToggle(600);
@@ -59,9 +59,9 @@ $(document).ready(function()
                $.cookie('profilegames', '-', { expires: 7});
             }
         });
-		
-		
-        // Handle the toggle of opposition expansion/collapse 
+
+
+        // Handle the toggle of opposition expansion/collapse
         $("#gamesexpand2").click(function()
         {
             $("#gamesdiv2").slideToggle(600);
@@ -73,8 +73,8 @@ $(document).ready(function()
                $.cookie('profilegames', '-', { expires: 7});
             }
         });
-    } 
-); 
+    }
+);
 </script>
 
 <?php
@@ -93,7 +93,7 @@ $MySQLPlayerName = $_GET['name'] ;
 
 $result = mysql_query("SELECT * FROM $standingscachetable
 WHERE name = '$MySQLPlayerName'
-ORDER BY rank DESC 
+ORDER BY rank DESC
 LIMIT 1;");
 $playercached = mysql_fetch_array($result);
 
@@ -101,8 +101,8 @@ $cur = 1;
 $rank = "";
 $rank = $playercached['rank'];
 
- 
-$MySQLgamestorank = $gamestorank; 
+
+$MySQLgamestorank = $gamestorank;
 
 
 // A passive player is one that has 0 rank, and have played enough game in total to be included in the ladder, and also has an elo high enough to be included in the ladder. An unranked player is one that doesn't even qualify to be part of the ladder: He has a rank of 0, and hasnt played enough games in total and/or hasn't have an elo that is high enough to be included in the ladder.
@@ -115,7 +115,7 @@ if (($rank == "0") && ($playercached['games'] >= $gamestorank) && ($playercached
 
 GetExactActivity($_GET['name'], GAMES_FOR_ACTIVE, $passivedays, $gamestable);
 
-// Get the players elo hiscore 
+// Get the players elo hiscore
 
 $sql = "SELECT winner, winner_elo FROM $gamestable WHERE winner = '".$_GET['name']."' AND contested_by_loser = '0' AND withdrawn ='0' ORDER BY winner_elo DESC LIMIT 0,1";
 $result = mysql_query($sql, $db);
@@ -123,7 +123,7 @@ $row = mysql_fetch_array($result);
 
 $hiscore_elo = $row['winner_elo'];
 
-// Get the players elo loscore 
+// Get the players elo loscore
 
 $sql = "SELECT loser, loser_elo FROM $gamestable WHERE loser = '".$_GET['name']."' AND contested_by_loser = '0' AND withdrawn ='0' ORDER BY loser_elo ASC LIMIT 0,1";
 $result = mysql_query($sql, $db);
@@ -214,44 +214,17 @@ if ($player["mail"] == "n/a") {
     $mailaddress = "n/a";
     $mailpic = "";
 } else {
-    if ($player['Joined'] != NULL) { 
-        $joined = date("H:i d m y", $player['Joined']); 
+    if ($player['Joined'] != NULL) {
+        $joined = date("H:i d m y", $player['Joined']);
     } else {
-        $joined ="00:00 06 03 08"; 
+        $joined ="00:00 06 03 08";
     }
 
     // Read the mail from the db and make it spambotsafe...
     $mailaddress = $player['mail'];
     $mailaddress = str_replace("@", " (at) ", $mailaddress);
     $mailaddress = str_replace(".", " (dot) ", $mailaddress);
-    $jabbername = $player['Jabber'];
-    $jabbername = str_replace("@", " (at) ", $jabbername);
-    $jabbername = str_replace(".", " (dot) ", $jabbername);
-    $jabberpic = "<img border='1' src='images/jabber.gif' align='absmiddle' alt='Jabber' />";
-    $mailpic = "<img border='1' src='images/mail.gif' align='absmiddle' alt='email' /></a>";
-}
-if ($player['icq'] == "n/a") {
-    $icqnumber = "n/a";
-    $icqpic = "";
-} else {
-    $icqnumber = $player['icq'];
-    $icqpic = "<img border='1' src='images/icq.gif' align='absmiddle' alt='icq' />";
-}
-if ($player['aim'] == "n/a") {
-    $aimname = "n/a";
-    $aimpic = "";
-} else {
-    $aimname = $player['aim'];
-    $aimpic = "<img border='1' src='images/aim.gif' align='absmiddle' alt='aim' />";
-}
-if ($player['msn'] == "n/a") {
-    $msnname = "n/a";
-    $msnpic = "";
-} else {
-    $msnname = $player['msn'];
-    $msnname = str_replace("@", " (at) ", $msnname);
-    $msnname = str_replace(".", " (dot) ", $msnname);
-    $msnpic = "<img border='1' src='images/msn.gif' align='absmiddle' alt='msn' /></a>";
+
 }
 
 if ($playercached['games'] <= 0) {
@@ -265,17 +238,18 @@ if ($playercached['games'] <= 0) {
 <tr>
 <td valign="top">
 
-<h1><?php
+<h1>
+<?php
 
 if ($player['Confirmation'] == "Deleted") {
 	echo "<h2>The  account  of ". $player['name'] ." is deleted...</h2>For some reason the user or admin has deleted the account you are looking for. It's statistics and other info is <i>preserved</i> and the account can be re-activated by it's owner. We have however decided not to share the info of deleted accounts, thus it is not public. Please contact the admin if you wish to undelete your deleted account. <br><br>";
-	
+
 	require('bottom.php');
 	exit;
 	}
-	
 
-if ($playercached['name'] == "") { 
+
+if ($playercached['name'] == "") {
 
 	// So player is not to be found in the cache table. This either means that the player a) does not exist or b) exists, but hasn't ever played a game yet. Let's find out by looking in the complete players table:
 
@@ -283,9 +257,9 @@ if ($playercached['name'] == "") {
 	$doesplayerexist=mysql_fetch_row($sql99);
 
 	if ($doesplayerexist[0] != 1) {
-		echo "Thou shall not name the wrong follower.....<br></h1>Translates into: You have tried to view the profile of a player that has never existed on the ladder. Please check the spelling in the url or enter the name of one that does."; 
+		echo "Thou shall not name the wrong follower.....<br></h1>Translates into: You have tried to view the profile of a player that has never existed on the ladder. Please check the spelling in the url or enter the name of one that does.";
 
-		require 'bottom.php'; 
+		require 'bottom.php';
 		exit;
 	}
 }
@@ -315,43 +289,43 @@ if ($_SESSION['username'] == $_GET['name']) {
 	    $cond,
 		'AND',
 		new DB_Condition('read_date', 0)
-	)); 
+	));
 	$unread_messages = $dbo->select_function($config->get_db_prefix().'_module_topic', 'id', 'count', $condition);
 	$all_messages = $dbo->select_function($config->get_db_prefix().'_module_topic', 'id', 'count', $cond);
 	unset($dbo);
 	unset($user);
     ?>
-    <a href='edit.php'><?php echo $player['name'];?> <?php echo $blocked;?>
+    <a href='edit.php'><?php echo $player['name'];?> <?php echo $blocked; ?>
     <img border="0" src="images/edit.gif" width="18" height="18" align="middle" alt="Edit"></a>
+    &nbsp;&nbsp;<img src='graphics/flags/<?php echo $player['country']; ?>.bmp' align='middle' border='1' alt='' /> <?php echo $player['country']; ?>
 	<div class = "message_alert">
 	    <div>
 		    <img src = "images/message.png" alt = "Private Messages" title = "Private Messages" />:&nbsp;
 		</div>
 		<div>
-		    <strong><a href = "message.php?unread=1" title = "Unread messages"><?php echo $unread_messages;?></a></strong>/<a href = "message.php" title = "All messages"><?php echo $all_messages;?></a>
+		    <strong><a href = "message.php?unread=1" title = "Unread messages"><?php echo $unread_messages; ?></a></strong>/<a href = "message.php" title = "All messages"><?php echo $all_messages; ?></a>
 		</div>
 	</div>
     <div style = "clear: both;">
     </div>
 	<?php
-} 
-else {
-    echo $_GET['name'],"$blocked";
-}
-	
-	
+    }
+    else {
+        echo $_GET['name'],"$blocked","&nbsp;&nbsp;<img src='graphics/flags/".$player['country'].".bmp' align='middle' border='1' alt='' /> ".$player['country'];
+    }
+
 ?>
 </h1>
 
 
-<?php 
+<?php
 // Show the players title if he has one...
 if ( $player["Titles"]  != "" ) {
 	echo "<b>" . $player["Titles"] . "</b><br />";
 }
 
-// Show if he's provisional... 
-// i cant even find this column in the db and suspect something is broken with the provisional stuff...russ? coded it and i dont even remember what it did. 
+// Show if he's provisional...
+// i cant even find this column in the db and suspect something is broken with the provisional stuff...russ? coded it and i dont even remember what it did.
 if ( (isset($player["provisional"])) && ($player["provisional"]  == "1" )) {
 	echo "<a href=\"faq.php#provisional\">provisional player</a><br />";
 }
@@ -359,31 +333,30 @@ if ( (isset($player["provisional"])) && ($player["provisional"]  == "1" )) {
 
 // Show info about players activity...
 
+// Set the message about how many days we have until passive...
 
-	// Set the message about how many days we have until passive...
-
-if ($ExactActivity["DaysUntilPassive"] == 0) { 
-	$buffertdays = "Last day today"; 
-	} else if ($ExactActivity["DaysUntilPassive"] == 1) { 
+if ($ExactActivity["DaysUntilPassive"] == 0) {
+	$buffertdays = "Last day today";
+	} else if ($ExactActivity["DaysUntilPassive"] == 1) {
 	$buffertdays = "Last day tomorrow";
 	} else if ($ExactActivity["DaysUntilPassive"] > 1)  {
-	$buffertdays = $ExactActivity["DaysUntilPassive"] . " days until passive";	
+	$buffertdays = $ExactActivity["DaysUntilPassive"] . " days until passive";
 }
 
-if ($rank == "(passive)") { 
+if ($rank == "(passive)") {
 	echo "(Missing ".  $ExactActivity["GamesSurplus"] * -1 ." games. Played ". $ExactActivity["GamesPlayed"] . " in the ". $passivedays ." recent days."; }
-			
-			
+
+
 if (($rank != "(passive)") && ($rank != "(unranked)")  && ($rank > 0)) {
-	echo "(". $buffertdays . ". ". $ExactActivity["GamesPlayed"] . " games in recent ". $passivedays ." days.)"; } 
-	
-	if ($rank == "(unranked)") { 
+	echo "(". $buffertdays . ". ". $ExactActivity["GamesPlayed"] . " games in recent ". $passivedays ." days.)"; }
+
+	if ($rank == "(unranked)") {
 	echo "Need at least a) $gamestorank played games b) ". GAMES_FOR_ACTIVE ." games in the ". $passivedays ." recent days and c) $ladderminelo Elo to become ranked."; }
-	
-	
-	
-	
-	
+
+
+
+
+
 // If we are logged in and displaying somebody elses profile, tell us about my win/loss
 if ((isset($_SESSION['username'])) && ($_GET['name'] != $_SESSION['username']) && (SHOW_ELO_EXPECTED != 0)) {
 
@@ -398,12 +371,10 @@ require_once 'include/elo.class.php';
 ?>
 </td>
 <td valign="top">
-<?php 
-       echo "<img src='avatars/".$player['Avatar']."' alt='".$player['Avatar']."'>";
-?>
-<?php 
-	echo "<br/> <p class='text'><img src='graphics/flags/".$player['country'].".bmp' align='middle' border='1' alt='' /> ".$player['country']."</p>"; 
+<?php
+    echo "<img src='avatars/".$player['Avatar']."' alt='".$player['Avatar']."'>";
 
+	// echo "<br/> <p class='text'><img src='graphics/flags/".$player['country'].".bmp' align='middle' border='1' alt='' /> ".$player['country']."</p>";
 
 ?>
 
@@ -459,14 +430,14 @@ if ($playercached['games'] > 0) {
 }
 
 if ($playercached['games'] < $gamestorank) {
-    echo "(unranked)"; 
+    echo "(unranked)";
 } else {
- 
+
  if ($ExactActivity["DaysUntilPassive"] >= 0) {
         echo $rank;
     } else {
         echo "<a href=\"faq.php#passive\">(passive)</a>";
-    }  
+    }
 }
 
 // Get average sportsmanship. This will get the points one has gotten from others while one is the loser of the game.
@@ -502,14 +473,14 @@ if (($SportsmanshipRatedAsLoser+$SportsmanshipRatedAsWinner) > 0) {
 
 <td><?php if ($playercached['games'] > 0) { echo $playercached['streak']."&nbsp;($hiscore_streak / $loscore_streak)"; } else { echo "-"; }  ?></td>
 <td><?php echo $sportsmanship; ?></td>
-<td><?php 
+<td><?php
 
 // Avoid division by zero problems...
 
 if ($playercached['games'] > 0) {
-echo sprintf("%0.0f%% (%d / %d / %d)",($withdrawn+$contestedByOthers+$contested)/($playercached['games']+$withdrawn+$contestedByOthers+$contested)*100, $withdrawn, $contestedByOthers, $contested);
+    echo sprintf("%0.0f%% (%d / %d / %d)",($withdrawn+$contestedByOthers+$contested)/($playercached['games']+$withdrawn+$contestedByOthers+$contested)*100, $withdrawn, $contestedByOthers, $contested);
 } else {
-echo "-";
+    echo "-";
 }
 
 ?></td>
@@ -527,28 +498,26 @@ $titlefound = 0;
 $q = 0;
 $TitleNumber = 0;
 
-while ($titlefound == 0) {  
+while ($titlefound == 0) {
         //echo "<b>PlayerLvl: ",$PlayerLvl,"</b>";
 	if ($PlayerLvl >= $q) {
 
 		$TitleNumber++;
 		$q = ($q + XP_SYS_TITLE_RANGE)*XP_SYS_TITLE_RANGE_MULTIPLIER;
-		
+
 	} else {
-		
+
 	$titlefound = 1;
-	
+
 	// If the player has a level lower than then required to obtain the first title we have to set a custom one instead.
 	if ($PlayerLvl < XP_SYS_TITLE_RANGE) {
 		$LvlRelatedTitle = "None";
 		} else { $LvlRelatedTitle = $XpTitle["$TitleNumber"];}
-	
+
 	}
-		
+
 }
 
-?>
-<?php 
 // The following table and stuff should only be shown / happen if the ladder uses the XP system. It can be enabled/disabled in the config file.
 if (XP_SYS_ENABLED == 1) { ?>
 <table class="tablesorter">
@@ -563,13 +532,13 @@ if (XP_SYS_ENABLED == 1) { ?>
 </thead>
 <tbody>
 	<tr>
-	
+
 	<td><?php echo $LvlRelatedTitle; ?></td>
 	<td><?php echo $PlayerLvl; ?></td>
 	<td> <?php echo $PlayerXp; ?></td>
 	<td> <?php echo round($CountingXp,0); ?></td>
 	<td> <?php echo round(($PlayerXp/$CountingXp*100),0). "%"; ?></td>
-	
+
 	</tr>
 </tbody>
 </table>
@@ -577,64 +546,52 @@ if (XP_SYS_ENABLED == 1) { ?>
 <?php } ?>
 
 <table class="tablesorter"><tbody><tr><td>
-<?php 
+<?php
 if ((isset($player['MsgMe'])) && ($player['MsgMe'] == "Yes")) {
     echo "<b><font color=\"#0D3D02\">Contact me to play!</font></b>";
 } else {
     echo "<font color=\"#9E005D\">Please don't message me asking for a game.</font>";
 }
-		
+
 if ($_SESSION['username'] && $player['MsgMe'] == "Yes") {
     echo "  <a href=\"challenge.php?challenger=".urlencode($_SESSION['username'])."&challenged=".$_GET['name']."\">[Challenge]</a>";
 }
 ?>
 </td>
-</tr>
-</tbody>
-</table>
 
-<table class="tablesorter"><tbody><tr><td>
+
+<td>
 <a href = "message.php?action=create_message&amp;reciever="<?php echo $player['name'];?>">Send me a message</a>
 </td>
 </tr>
 </tbody>
 </table>
 
-<?php // Only show contact info if the user wants to be contacted 
-if ($player['MsgMe'] == "Yes") {
+<?php
+// Only show contact info if the user wants to be contacted
+if (isset($_SESSION['username']) && ($player['MsgMe'] == "Yes")) {
 ?>
-	<table class="tablesorter">
-    <thead>
-        <tr>
-        <th>Mail <?php echo $mailpic ?></th>
-        <th>ICQ <?php echo $icqpic ?></th>
-        <th>AIM <?php echo $aimpic ?></th>
-        <th>MSN <?php echo $msnpic ?></th>
-        <th>Jabber <?php echo $jabberpic ?></th>
-        </tr>
-    </thead>
-    <tbody>
-	<tr>
-        <td><?php echo $mailaddress ?></td>
-        <td><?php echo $icqnumber ?></td>
-        <td><?php echo $aimname ?></td>
-        <td><?php echo $msnname ?></td>
-        <td><?php echo $jabbername ?></td>
+<table class="tablesorter">
+<thead>
+  <tr>
+    <th>Mail <?php echo $mailpic ?></th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td><?php echo $mailaddress ?></td>
     </tr>
-    </tbody>	
+</tbody>
 </table>
-
-<?php 
-
-if ($player['CanPlay'] != "") { ?>
-    <h2>Available to play <a style = "cursor: pointer;" id="availabletoplayexpand"></a></h2>	
+<?php if ($player['CanPlay'] != "") { ?>
+    <h2>Available to play <a style = "cursor: pointer;" id="availabletoplayexpand"></a></h2>
 	<br>
 
 <div id="availabletoplaydiv">
-<p class="text">Is on <?php echo $player['HaveVersion'] ?>  & can usually play <?php echo " ($cfg_ladder_timezone)";?>:</p>
+<p class="text">Is on <?php echo $player['HaveVersion'] ?>  & can usually play <?php echo " ($cfg_ladder_timezone)"; ?>:</p>
 
 	<table id="availabletoplay" class="tablesorter">
-    <thead>	
+    <thead>
 	<tr>
 	<th></th>
 	<th>Morning</th>
@@ -646,8 +603,8 @@ if ($player['CanPlay'] != "") { ?>
     </thead>
     <tbody>
 <?php
-    $days = array("Monday" => "Mon", "Tuesday" => "Tue", "Wednesday" => "Wed", 
-                  "Thursday" => "Thu", "Friday" => "Fri", "Saturday" => "Sat", "Sunday" => "Sun");	
+    $days = array("Monday" => "Mon", "Tuesday" => "Tue", "Wednesday" => "Wed",
+                  "Thursday" => "Thu", "Friday" => "Fri", "Saturday" => "Sat", "Sunday" => "Sun");
 $class = "even";
 foreach($days as $name => $abbrev) {
     if ($class == "odd") {
@@ -658,9 +615,9 @@ foreach($days as $name => $abbrev) {
 ?>
 	<tr class="<?php echo $class ?>">
 		<td style="text-align: right; font-weight: bold"><?php echo $name ?></td>
-		
+
 		<td><?php $pos1 = strpos($player['CanPlay'], $abbrev."M");
-		if ($pos1 != FALSE) {echo "<img border=\"0\" height='20px' src=\"images/streakplus.gif\" />";}?></td>
+		if ($pos1 != FALSE) {echo "<img border=\"0\" height='20px' src=\"images/streakplus.gif\" />";} ?></td>
 		<td><?php $pos1 = strpos($player['CanPlay'], $abbrev."N");
 		if ($pos1 != FALSE) {echo "<img border=\"0\" height='20px' src=\"images/streakplus.gif\" />";} ?></td>
 		<td><?php $pos1 = strpos($player['CanPlay'], $abbrev."A");
@@ -670,20 +627,19 @@ foreach($days as $name => $abbrev) {
 		<td><?php $pos1 = strpos($player['CanPlay'], $abbrev."G");
 		if ($pos1 != FALSE) {echo "<img border=\"0\" height='20px' src=\"images/streakplus.gif\" />";} ?></td>
 	</tr>
-	
-	<?php } ?>
+
+	<?php } ?> // edn of foreach
     </tbody>
 	</table>
     </div>
-	<?php } ?>
-<?php }
+<?php }  // end of if
 
 // Only show game history & opposition break down if there are any played games...
 
-if ($playercached['games'] > 0) { 
+if ($playercached['games'] > 0) {
 
 
-    $sql = "SELECT reported_on, DATE_FORMAT(reported_on, '".$GLOBALS['displayDateFormat']."') as report_time, unix_timestamp(reported_on) as unixtime, winner, loser, winner_points, loser_points, winner_elo, loser_elo, replay_filename is not null as is_replay, replay_downloads, withdrawn, contested_by_loser, winner_comment, loser_comment, winner_stars, loser_stars, winner_games, loser_games, l_rank, w_rank, l_new_rank, w_new_rank FROM $gamestable WHERE winner = '".$_GET['name']."' OR loser = '".$_GET['name']."'  ORDER BY reported_on DESC LIMIT 30";
+    $sql = "SELECT reported_on, DATE_FORMAT(reported_on, '".$GLOBALS['displayDateFormat']."') as report_time, unix_timestamp(reported_on) as unixtime, winner, loser, winner_points, loser_points, winner_elo, loser_elo, replay_filename is not null as is_replay, replay_downloads, withdrawn, contested_by_loser, winner_comment, loser_comment, winner_stars, loser_stars, winner_games, loser_games, l_rank, w_rank, l_new_rank, w_new_rank FROM $gamestable WHERE winner = '".$_GET['name']."' OR loser = '".$_GET['name']."'  ORDER BY reported_on DESC LIMIT 30";}}
 
 
 $result = mysql_query($sql,$db);
@@ -706,15 +662,13 @@ $result = mysql_query($sql,$db);
 </div>
 
 
-<?php 
+<?php
 
-// display the elo/game chart if it is set in the main config 
-if  ($G_CFG_enable_graph_creation == TRUE){?>
+// display the elo/game chart if it is set in the main config
+if  ($G_CFG_enable_graph_creation == TRUE){ ?>
     <h2>Graph <a id="graph"></a></h2>
     <div align="center" id="graph"> <?php include 'pChart/elo_time_graph.php'; ?> </div>
-<?php  } ?>
+<?php  }
 
-<?php
-}
 require('bottom.php');
 ?>
