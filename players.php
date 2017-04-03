@@ -24,20 +24,20 @@ if ($searchArray['lossesdirection'] <> "<=" && $searchArray['lossesdirection'] <
 if ($searchArray['ratingdirection'] <> "<=" && $searchArray['ratingdirection'] <> ">=" && $searchArray['ratingdirection'] <> "=") $searchArray['ratingdirection'] = "";
 if ($searchArray['streakdirection'] <> "<=" && $searchArray['streakdirection'] <> ">=" && $searchArray['streakdirection'] <> "=") $searchArray['streakdirection'] = "";
 
-setcookie ("playeroptions", base64_encode(serialize($searchArray)), time()+7776000); 
+setcookie ("playeroptions", base64_encode(serialize($searchArray)), time()+7776000);
 
 require_once 'autologin.inc.php';
 require('top.php');
 ?>
-<h2>Clan Search <?php echo $_SESSION['ladder_id']; ?></h2> 
+<h2>Clan Search <?php echo $_SESSION['ladder_id']; ?></h2>
 <p>You can search for clans below.  You may use the options in the header to search for specific criteria.  A maximum of 250 players will be displayed for any search.</p>
-<form method="get" action="players.php"> 
+<form method="get" action="players.php">
 <script type="text/javascript">
-$(document).ready(function() 
-    { 
-        $("#player").tablesorter({sortList: [[2,1]], widgets: ['zebra'] }); 
-    } 
-); 
+$(document).ready(function()
+    {
+        $("#player").tablesorter({sortList: [[2,1]], widgets: ['zebra', 'filter'] });
+    }
+);
 </script>
 <table id="player" class="tablesorter">
 <thead>
@@ -101,11 +101,11 @@ $(document).ready(function()
     <?php include ("include/countries.inc.php"); ?>
 
 <?php
- 
+
 
       $countries = countriesList();
-      
-      asort($countries);    
+
+      asort($countries);
 
       foreach ($countries as $key => $data) {
         if ($key !== "No Country") {

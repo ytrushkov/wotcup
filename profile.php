@@ -220,6 +220,10 @@ if ($player["mail"] == "n/a") {
         $joined ="00:00 06 03 08";
     }
 
+    // Read the mail from the db and make it spambotsafe...
+    $mailaddress = $player['mail'];
+    $mailaddress = str_replace("@", " (at) ", $mailaddress);
+    $mailaddress = str_replace(".", " (dot) ", $mailaddress);
 
 }
 
@@ -291,15 +295,15 @@ if ($_SESSION['username'] == $_GET['name']) {
 	unset($dbo);
 	unset($user);
     ?>
-    <a href='edit.php'><?php echo $player['name'];?> <?php echo $blocked;?>
+    <a href='edit.php'><?php echo $player['name'];?> <?php echo $blocked; ?>
     <img border="0" src="images/edit.gif" width="18" height="18" align="middle" alt="Edit"></a>
-    <?php echo "&nbsp;&nbsp;<img src='graphics/flags/".$player['country'].".bmp' align='middle' border='1' alt='' /> ".$player['country']; ?>
+    &nbsp;&nbsp;<img src='graphics/flags/<?php echo $player['country']; ?>.bmp' align='middle' border='1' alt='' /> <?php echo $player['country']; ?>
 	<div class = "message_alert">
 	    <div>
 		    <img src = "images/message.png" alt = "Private Messages" title = "Private Messages" />:&nbsp;
 		</div>
 		<div>
-		    <strong><a href = "message.php?unread=1" title = "Unread messages"><?php echo $unread_messages;?></a></strong>/<a href = "message.php" title = "All messages"><?php echo $all_messages;?></a>
+		    <strong><a href = "message.php?unread=1" title = "Unread messages"><?php echo $unread_messages; ?></a></strong>/<a href = "message.php" title = "All messages"><?php echo $all_messages; ?></a>
 		</div>
 	</div>
     <div style = "clear: both;">
@@ -564,13 +568,27 @@ if ($_SESSION['username'] && $player['MsgMe'] == "Yes") {
 </table>
 
 <?php
-
-if ($player['CanPlay'] != "") { ?>
+// Only show contact info if the user wants to be contacted
+if (isset($_SESSION['username']) && ($player['MsgMe'] == "Yes")) {
+?>
+<table class="tablesorter">
+<thead>
+  <tr>
+    <th>Mail <?php echo $mailpic ?></th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td><?php echo $mailaddress ?></td>
+    </tr>
+</tbody>
+</table>
+<?php if ($player['CanPlay'] != "") { ?>
     <h2>Available to play <a style = "cursor: pointer;" id="availabletoplayexpand"></a></h2>
 	<br>
 
 <div id="availabletoplaydiv">
-<p class="text">Is on <?php echo $player['HaveVersion'] ?>  & can usually play <?php echo " ($cfg_ladder_timezone)";?>:</p>
+<p class="text">Is on <?php echo $player['HaveVersion'] ?>  & can usually play <?php echo " ($cfg_ladder_timezone)"; ?>:</p>
 
 	<table id="availabletoplay" class="tablesorter">
     <thead>
@@ -599,7 +617,7 @@ foreach($days as $name => $abbrev) {
 		<td style="text-align: right; font-weight: bold"><?php echo $name ?></td>
 
 		<td><?php $pos1 = strpos($player['CanPlay'], $abbrev."M");
-		if ($pos1 != FALSE) {echo "<img border=\"0\" height='20px' src=\"images/streakplus.gif\" />";}?></td>
+		if ($pos1 != FALSE) {echo "<img border=\"0\" height='20px' src=\"images/streakplus.gif\" />";} ?></td>
 		<td><?php $pos1 = strpos($player['CanPlay'], $abbrev."N");
 		if ($pos1 != FALSE) {echo "<img border=\"0\" height='20px' src=\"images/streakplus.gif\" />";} ?></td>
 		<td><?php $pos1 = strpos($player['CanPlay'], $abbrev."A");
@@ -621,7 +639,7 @@ foreach($days as $name => $abbrev) {
 if ($playercached['games'] > 0) {
 
 
-    $sql = "SELECT reported_on, DATE_FORMAT(reported_on, '".$GLOBALS['displayDateFormat']."') as report_time, unix_timestamp(reported_on) as unixtime, winner, loser, winner_points, loser_points, winner_elo, loser_elo, replay_filename is not null as is_replay, replay_downloads, withdrawn, contested_by_loser, winner_comment, loser_comment, winner_stars, loser_stars, winner_games, loser_games, l_rank, w_rank, l_new_rank, w_new_rank FROM $gamestable WHERE winner = '".$_GET['name']."' OR loser = '".$_GET['name']."'  ORDER BY reported_on DESC LIMIT 30";
+    $sql = "SELECT reported_on, DATE_FORMAT(reported_on, '".$GLOBALS['displayDateFormat']."') as report_time, unix_timestamp(reported_on) as unixtime, winner, loser, winner_points, loser_points, winner_elo, loser_elo, replay_filename is not null as is_replay, replay_downloads, withdrawn, contested_by_loser, winner_comment, loser_comment, winner_stars, loser_stars, winner_games, loser_games, l_rank, w_rank, l_new_rank, w_new_rank FROM $gamestable WHERE winner = '".$_GET['name']."' OR loser = '".$_GET['name']."'  ORDER BY reported_on DESC LIMIT 30";}}
 
 
 $result = mysql_query($sql,$db);
@@ -647,12 +665,10 @@ $result = mysql_query($sql,$db);
 <?php
 
 // display the elo/game chart if it is set in the main config
-if  ($G_CFG_enable_graph_creation == TRUE){?>
+if  ($G_CFG_enable_graph_creation == TRUE){ ?>
     <h2>Graph <a id="graph"></a></h2>
     <div align="center" id="graph"> <?php include 'pChart/elo_time_graph.php'; ?> </div>
-<?php  } ?>
+<?php  }
 
-<?php
-}
 require('bottom.php');
 ?>
