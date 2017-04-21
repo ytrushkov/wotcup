@@ -19,8 +19,8 @@ require('top.php');
 <h3>Ladders</h3>
 <ol>
         <li>We currently have several ladders in operation: 3v3, 5v5, 7v7, 10v10. One registration allows you to participate in any or all ladders.
-        Any matches played inside another event or tournament (in 3v3, 5v5, 7v7, or 10v10) may be reported here, as long as both teams are registered here and agree to include that eventrules
-        . Informal scrims don't count unless explicitly agreed or the training room is tagged as a ladder match. The ladders
+        Any matches played inside another event or tournament (in 3v3, 5v5, 7v7, or 10v10) may be reported here, as long as both teams are registered here and agree to include that event.
+        Informal scrims don't count unless explicitly agreed or the training room is tagged as a ladder match. The ladders
         are tier agnostic. It is up to the user to determine what tier(s) they wish to play in, either by explicit agreement or by training room choices.
         The default rules are listed here, but teams may agree to any set of rules they wish, so long as they utilize the proper number of players for the respective ladder.
 </ol>
