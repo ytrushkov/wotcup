@@ -18,9 +18,9 @@ require('top.php');
 
 <h3>Ladders</h3>
 <ol>
-        <li>We currently have three ladders in operation: 3v3, 7v7, 10v10. One registration allows you to participate in any or all ladders.
-        Any matches played inside another event or tournament (in 3v3, 7v7, or 10v10) may be reported here, as long as both teams are registered here and agree to the rules
-        of that event. Informal scrims don't count unless explicitly agreed or the training room is tagged as a ladder match. The ladders
+        <li>We currently have several ladders in operation: 3v3, 5v5, 7v7, 10v10. One registration allows you to participate in any or all ladders.
+        Any matches played inside another event or tournament (in 3v3, 5v5, 7v7, or 10v10) may be reported here, as long as both teams are registered here and agree to include that eventrules
+        . Informal scrims don't count unless explicitly agreed or the training room is tagged as a ladder match. The ladders
         are tier agnostic. It is up to the user to determine what tier(s) they wish to play in, either by explicit agreement or by training room choices.
         The default rules are listed here, but teams may agree to any set of rules they wish, so long as they utilize the proper number of players for the respective ladder.
 </ol>
@@ -29,8 +29,8 @@ require('top.php');
 <ol>
 	<li>All matches are best of 5. The proper room settings are 10 minute games (7 mins for 3v3), encounter game type, 
         all classes allowed. The host may set the lobby upper and lower tier limits as they wish (or as they have agreed).</li> 
-        <li>Each team may run a maximum of 3 of each tank (1 of each tank in 3v3). Exact reskins (e.g. Lycan,
-        Freedom, Black tanks, etc) count as the same tank. Premiums are also limited to one of each tank. AMX
+        <li>Less than half of each team may be comprised of the same tank (e.g. 2 out of 5). Exact reskins (e.g. Lycan,
+        Freedom, Black tanks, etc) count as the same tank model. Premiums are also limited to one of each tank. AMX
         Chaffee cannot play as top tier. There are no other tank restrictions.</li> 
         <li>Each team will pick a map -- playing once on each side of each map. If the match 
         is tied after 4 games, a single game on Ghost Town will decide the match. The host decides side
