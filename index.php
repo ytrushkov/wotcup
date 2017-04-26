@@ -101,10 +101,10 @@ require('top.php');
 
 <?php
 
-If (INDEX_COMMENT_HILITE == 1) {
+if (INDEX_COMMENT_HILITE == 1) {
 
 
-	$sql ="SELECT winner, loser, replay_filename is not null as is_replay, reported_on, winner_comment, loser_comment, winner_elo, loser_elo FROM $gamestable WHERE withdrawn = 0 AND contested_by_loser = 0  AND (winner_comment != '' || loser_comment != '') ORDER BY reported_on DESC LIMIT 0,1";
+	$sql ="SELECT winner, loser, replay_filename is not null as is_replay, winner_video_url is not null as is_video, reported_on, winner_comment, loser_comment, winner_elo, loser_elo FROM $gamestable WHERE withdrawn = 0 AND contested_by_loser = 0  AND (winner_comment != '' || loser_comment != '') ORDER BY reported_on DESC LIMIT 0,1";
 
 	$result = mysql_query($sql,$db);
 	$row = mysql_fetch_array($result);
