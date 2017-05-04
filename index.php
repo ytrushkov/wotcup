@@ -104,14 +104,13 @@ require('top.php');
 if (INDEX_COMMENT_HILITE == 1) {
 
 
-	$sql ="SELECT winner, loser, replay_filename is not null as is_replay, winner_video_url is not null as is_video, reported_on, winner_comment, loser_comment, winner_elo, loser_elo FROM $gamestable WHERE withdrawn = 0 AND contested_by_loser = 0  AND (winner_comment != '' || loser_comment != '') ORDER BY reported_on DESC LIMIT 0,1";
+	$sql ="SELECT winner, loser, replay_filename, winner_video_url, loser_video_url, reported_on, winner_comment, loser_comment, winner_elo, loser_elo FROM $gamestable WHERE withdrawn = 0 AND contested_by_loser = 0  AND (winner_comment != '' || loser_comment != '') ORDER BY reported_on DESC LIMIT 0,1";
 
 	$result = mysql_query($sql,$db);
 	$row = mysql_fetch_array($result);
 
 
 	echo "<div class=\"spotlight\"><h1 class=\"spotlight\">Spotlight</h1><br /> <b>".$row['winner']." (".$row['winner_elo'].") / ".$row['loser']." (".$row['loser_elo'].")</b>";
-
 
 
 	// We don't want to show the comments to members that are not logged in if comments are set to only display to logged in members...
@@ -128,26 +127,69 @@ if (INDEX_COMMENT_HILITE == 1) {
 			}
 	} else { echo "<i>Please login to read game comments.</i>"; }
 
-	if ($row['is_replay'] != 0) {
-		echo "
-		<!-- Trigger the Modal -->
-		<img id=\"myImg\" src=\"download-replay.php?reported_on=$row[reported_on]\"
-		alt=\"".$row['winner']." (".$row['winner_elo'].") / ".$row['loser']." (".$row['loser_elo'].")\" height=\"200\"
-		onclick=\"document.getElementById('myModal').style.display='block'\">
 
-		<!-- The Modal -->
-		<div id=\"myModal\" class=\"modal\">
 
-		  <!-- The Close Button -->
-		  <span class=\"close_button\" onclick=\"document.getElementById('myModal').style.display='none'\">&times;</span>
 
-		  <!-- Modal Content (The Image) -->
-		  <img class=\"modal-content\" id=\"img01\" src=\"download-replay.php?reported_on=$row[reported_on]\">
 
-		  <!-- Modal Caption (Image Text) -->
-		  <div id=\"caption\">".$row['winner']." (".$row['winner_elo'].") / ".$row['loser']." (".$row['loser_elo'].")</div>
-		</div>";
+
+
+
+
+
+
+	if ($row['winner_video_url'] != "") {
+
+	  if($row['winner_video_url'] == strip_tags($row['winner_video_url'])) {
+        //No HTML in string = link
+
+        echo '<a href="' . $row['winner_video_url'] . '">Stream Link</a>';
+
+
+
+    } else {
+
+
+        //Contains HTML = iframe
+        echo $row['winner_video_url'];
+
+    }}
+
+		else {
+
+    if ($row['replay_filename'] != "") {
+
+		echo  '<a href="' . 'share/replays/'.$row['replay_filename'] . '"><img src="' . 'share/replays/'.$row['replay_filename'] . '" width="400"></a>';
+
+	}	else {
+
+			if ($row['loser_video_url'] != "") {
+
+	  if($row['loser_video_url'] == strip_tags($row['loser_video_url'])) {
+        //No HTML in string = link
+
+        echo '<a href="' . $row['loser_video_url'] . '">Stream Link</a>';
+
+
+
+    } else {
+
+
+        //Contains HTML = iframe
+        echo $row['loser_video_url'];
+
+    }}
+
+		else {
+
+    if ($row['replay_filename'] != "") {
+
+		echo  '<a href="' . 'share/replays/'.$row['replay_filename'] . '"><img src="' . 'share/replays/'.$row['replay_filename'] . '" width="400"></a>';
+
 	}
+
+	}}}
+
+
 
 // Magic Commentator starts here ---------------------------------------------------------------
 if  ($MagicComGotEloSettings['Comments'] > 0){
