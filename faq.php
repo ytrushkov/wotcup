@@ -114,7 +114,7 @@ require('top.php');
 	<li>To be <em>ranked</em> you must have played at least;
 		<ol>
 			<li>3 matches <strong>and</strong></li>
-			<li>have played at least one match in the last 15 days. The rank orders
+			<li>have played at least one match in the last 60 days. The rank orders
 			clans by comparing their rating and also the amount of games they've
 			played. The more, the better, in both cases.</li>
 		</ol>
@@ -122,7 +122,7 @@ require('top.php');
 	<li>To be listed in the ladder table you must;
 		<ol>
 			<li>have a rating that's 1300 or above, <strong>and</strong></li>
-			<li>have played at least one match in the last 15 days <strong>and</strong></li>
+			<li>have played at least one match in the last 60 days <strong>and</strong></li>
 			<li>played at least 3 matches in total. You can read the <a href="faq.php#passive">details here</a>.</li>
 		</ol>
 	</li>
@@ -296,7 +296,7 @@ With time your skills will grow, and so will your rating.
 <a name="passive"></a><h4>What does passive rank mode mean?</h4>
 <p>
 In order to keep the ladder meaningful, up to date and to encourage activity
-we have a rule that says that you must have played at least one match in the last 15 days
+we have a rule that says that you must have played at least one match in the last 60 days
 if you wish to be listed as a valid contender in the ladder. If
 you don't play a game for 16 days your account will be set in <em>passive
 rating mode</em>. While being in a passive rating mode you won't get listed
@@ -581,7 +581,7 @@ higher rated player would win 0 points if the difference in rating is &gt;=
 </p>
 <p>
 Third, a player can't really stop playing to "protect" her rating: The ladder
-demands that she plays at least one match every 15 days. If she doesn't she
+demands that she plays at least one match every 60 days. If she doesn't she
 will be temporarily put into passive rating mode and won't be listed in the
 ladder. Then there's also the fact that a skilled player who only plays
 the bare minimum amount of games will face a lot of indirect competition
