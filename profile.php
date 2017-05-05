@@ -372,7 +372,8 @@ require_once 'include/elo.class.php';
 </td>
 <td valign="top">
 <?php
-    echo "<img src='avatars/".$player['Avatar']."' alt='".$player['Avatar']."'>";
+    echo "<img src='avatars/".$player['Avatar']."' height='150' alt='".$player['Avatar']."'>";
+
 
 	// echo "<br/> <p class='text'><img src='graphics/flags/".$player['country'].".bmp' align='middle' border='1' alt='' /> ".$player['country']."</p>";
 
