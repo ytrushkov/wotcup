@@ -91,7 +91,7 @@ if ((mysql_num_rows($result)==0) && isset($_SESSION['username'])) {
 
 // Show latest played games:
 
-	$sql ="SELECT winner, loser, replay_filename is not null as is_replay, reported_on FROM $gamestable WHERE withdrawn = 0 and contested_by_loser = 0 ORDER BY reported_on DESC LIMIT $numindexresults";
+	$sql ="SELECT winner, loser, replay_filename, reported_on FROM $gamestable WHERE withdrawn = 0 and contested_by_loser = 0 ORDER BY reported_on DESC LIMIT $numindexresults";
 	$result = mysql_query($sql,$db);
 	//$bajs = mysql_fetch_array($result);
 
@@ -101,7 +101,7 @@ if ((mysql_num_rows($result)==0) && isset($_SESSION['username'])) {
 	while ($bajs = mysql_fetch_array($result)) {
         echo "<li><a href=\"profile.php?name=$bajs[0]\">$bajs[0]</a> / <a href=\"profile.php?name=$bajs[1]\">$bajs[1]</a>";
         // show replay link or not?
-        if ($bajs['is_replay'] != 0) {
+        if ($bajs['replay_filename'] != "") {
 		    echo " <a href=\"download-replay.php?reported_on=$bajs[reported_on]\">®</a></li>";
 		}
         echo "</li>";
@@ -132,6 +132,7 @@ if ((mysql_num_rows($result)==0) && isset($_SESSION['username'])) {
 	//date('Y-m-d', strtotime(date('Y-m-1')." -1 month"))
 	$prevStartDate = strtotime(date('Y-m-01').' -1 month');
 // Show player of the month
+
 $sqlConditions = "g.reported_on >= '".date('Y-m-d 00:00:00',$prevStartDate)."' AND g.reported_on <= '".date('Y-m-01 00:00:00')."'";
 $sql = "select gg.player, sum(gg.points) as total, p.Avatar, s.rating
 from (
@@ -148,7 +149,7 @@ $result = mysql_query($sql,$db);
 
 echo "<br><b>Clan of the month</b> (".date('F Y', $prevStartDate).")<br>";
 while ($bajs = mysql_fetch_array($result)) {
-	echo "<img border='0' src='avatars/$bajs[2]' alt='avatar' style='margin: 8px 5px'/><a href=\"profile.php?name=$bajs[0]\">$bajs[0]</a> ($bajs[3] / +$bajs[1]pts)";
+	echo "<img border='0' src='avatars/$bajs[2]' alt='avatar' style='height:75px'/><a href=\"profile.php?name=$bajs[0]\">$bajs[0]</a> ($bajs[3] / +$bajs[1]pts)";
 }
 unset($prevStartDate);
 
