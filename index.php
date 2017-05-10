@@ -104,13 +104,18 @@ require('top.php');
 if (INDEX_COMMENT_HILITE == 1) {
 
 
-	$sql ="SELECT winner, loser, replay_filename, winner_video_url, loser_video_url, reported_on, winner_comment, loser_comment, winner_elo, loser_elo FROM $gamestable WHERE withdrawn = 0 AND contested_by_loser = 0  AND (winner_comment != '' || loser_comment != '') ORDER BY reported_on DESC LIMIT 0,1";
+	$sql ="SELECT $gamestable.winner, $gamestable.loser, $playerstable.Avatar, $gamestable.replay_filename, $gamestable.winner_video_url, $gamestable.loser_video_url, $gamestable.reported_on, $gamestable.winner_comment, $gamestable.loser_comment, $gamestable.winner_elo, $gamestable.loser_elo
+	FROM $gamestable
+	LEFT JOIN $playerstable ON $gamestable.winner = $playerstable.name
+	WHERE withdrawn = 0 AND contested_by_loser = 0  AND $playerstable.name = $gamestable.winner ORDER BY reported_on DESC LIMIT 0,1";
+
+
+
 
 	$result = mysql_query($sql,$db);
 	$row = mysql_fetch_array($result);
 
-
-	echo "<div class=\"spotlight\"><h1 class=\"spotlight\">Spotlight</h1><br /> <b>".$row['winner']." (".$row['winner_elo'].") / ".$row['loser']." (".$row['loser_elo'].")</b>";
+  	echo "<div class=\"spotlight\"><h1 class=\"spotlight\">Spotlight</h1><br /><a href=\"profile.php?name=$row[0]\"><img border='0' src='avatars/$row[2]' alt='avatar' style='height:50px'/></a><b> <a href=\"profile.php?name=$row[0]\">$row[0]</a> (".$row['winner_elo'].") / <a href=\"profile.php?name=$row[1]\">$row[1]</a> (".$row['loser_elo'].")</b>";
 
 
 	// We don't want to show the comments to members that are not logged in if comments are set to only display to logged in members...
