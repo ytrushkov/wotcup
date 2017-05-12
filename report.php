@@ -148,6 +148,7 @@ if (isset($_POST['report'])) {
 					if ($file_info['extension'] != $replayfileextension) {
 						 $error = "You attempted to upload a replay but failed. The file you uploaded wasn't of the correct type. Instead of a *.". $replayfileextension ." file you uploaded a ". $file_info['extension'].  "-file. Please only upload valid replays.<br /><br /><b>Notice:</b> The game has <i>not</i> been reported. Try again.";
 					}
+
 					if ($_FILES["uploadedfile"]["size"] > MAX_REPLAYSIZE) {
 						$uploadefilesizekb = ($_FILES["uploadedfile"]["size"]/1000);
 						$uploadefileoversizedkb = ($uploadefilesizekb - $maxfilesizekb);
@@ -186,7 +187,7 @@ if (isset($_POST['report'])) {
 
 
 
-// If the winner left a comment or a sportsmanship rating we now want to update the tables, that already have the game result in them,. to include it/them. Lets choose a sql statement...
+// If the winner left a comment, sportsmanship rating, or stream url we now want to update the tables, that already have the game result in them,. to include it/them. Lets choose a sql statement...
 
 	$username =  $_SESSION['username'];
 	$sportsmanship = trim($_POST['sportsmanship']);
@@ -198,26 +199,35 @@ if (isset($_POST['report'])) {
 		echo "<br>Sportsmanship set. <br>";
 		$query2 = "UPDATE $gamestable SET loser_stars = '$sportsmanship' WHERE  winner = '$username' AND reported_on = '".$result['reportedTime']."'";
 	}
+
 	if ($comment != "") {
 
-			$query2 = "UPDATE $gamestable SET winner_comment = '$comment' WHERE  winner = '$username' AND reported_on = '".$result['reportedTime']."'";
+		echo "<br>Comment added. <br>";
+		$query2 = "UPDATE $gamestable SET winner_comment = '$comment' WHERE  winner = '$username' AND reported_on = '".$result['reportedTime']."'";
 	}
+
 	if ($stream != "") {
 
-			$query2 = "UPDATE $gamestable SET winner_video_url = '$stream' WHERE  winner = '$username' AND reported_on = '".$result['reportedTime']."'";
+		echo "<br>Stream URL added. <br>";
+		$query2 = "UPDATE $gamestable SET winner_video_url = '$stream' WHERE  winner = '$username' AND reported_on = '".$result['reportedTime']."'";
+	}
+
+	if (($sportsmanship != "") && ($stream != "")) {
+				$query2 = "UPDATE $gamestable SET winner_comment = '$comment', winner_video_url = '$stream' WHERE  winner = '$username' AND reported_on = '".$result['reportedTime']."'";
+	}
+
+	if (($stream != "") && ($comment != "")) {
+
+				$query2 = "UPDATE $gamestable SET winner_video_url = '$stream', winner_comment = '$comment' WHERE  winner = '$username' AND reported_on = '".$result['reportedTime']."'";
 	}
 
 	if (($sportsmanship != "") && ($comment != "") && ($stream != "")) {
-			$query2 = "UPDATE $gamestable SET winner_comment = '$comment', loser_stars = '$sportsmanship', winner_video_url = '$stream' WHERE  winner = '$username' AND reported_on = '".$result['reportedTime']."'";
-	}
-	if (($sportsmanship != "") && ($stream != "")) {
-			$query2 = "UPDATE $gamestable SET winner_comment = '$comment', winner_video_url = '$stream' WHERE  winner = '$username' AND reported_on = '".$result['reportedTime']."'";
-	}
-	if (($stream != "") && ($comment != "")) {
-			$query2 = "UPDATE $gamestable SET winner_video_url = '$stream', winner_comment = '$comment' WHERE  winner = '$username' AND reported_on = '".$result['reportedTime']."'";
+
+				$query2 = "UPDATE $gamestable SET loser_stars = '$sportsmanship', winner_comment = '$comment', winner_video_url = '$stream' WHERE  winner = '$username' AND reported_on = '".$result['reportedTime']."'";
 	}
 
-	// Now lets apply it if there was a comment or sportsmanship point or stream given.
+
+	// Now lets apply it if there was a comment, sportsmanship point, or stream given.
 
 	if (($sportsmanship != "") || ($comment != "") || ($stream != "")) {
 		$result2 = mysql_query($query2) or die(mysql_error());
@@ -349,7 +359,7 @@ if (isset($_POST['report'])) {
 </tr>
 
 <tr><td valign="top">
-<p valign="top">stream link</p></td>
+<p valign="top">stream link (twitch, youtube, etc) </p></td>
 <td valign="top"><textarea name="stream" rows="1" cols="60"></textarea> </td>
 </tr>
 
