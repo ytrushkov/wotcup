@@ -134,57 +134,94 @@ if (INDEX_COMMENT_HILITE == 1) {
 
 
 
+if ($row['winner_video_url'] != "")
+
+ $youtube_pattern = '/(?:http?s?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?(\S+)/';
+ $vimeo_pattern = ' /(?:http?s?:\/\/)?(?:www\.)?(?:vimeo\.com)\/?(\S+)/';
+ $twitch_pattern = ' /(?:http?s?:\/\/)?(?:www\.)?(?:twitch\.tv)\/?(\S+)/';
+ $video_pattern = ' /([-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?(?:webm|mp4|ogv))/i';
+ $image_pattern = ' /([-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?(?:jpg|jpeg|gif|png))/i';
+ $general_url_pattern = ' /(?!.*")([-a-zA-Z0-9@:%_\+.~#?&//=;]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=;]*))/i';
+
+if(preg_match_all($youtube_pattern,$row['winner_video_url'])) {
+    // valid youtube
+ $replace = '<iframe width="420" height="345" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>';
+
+ echo preg_replace($youtube_pattern, $replace, $row['winner_video_url']);
+ }
+
+if(preg_match_all($vimeo_pattern,$row['winner_video_url'])) {
+    // valid vimeo
+ $replace = '<iframe width="420" height="345" src="//player.vimeo.com/video/$1" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+ echo preg_replace($vimeo_pattern, $replace, $row['winner_video_url']);
+ }
+
+if(preg_match_all($twitch_pattern,$row['winner_video_url'])) {
+    // valid twitch
+ $replace = '<iframe src="https://player.twitch.tv/?channel=$1&!autoplay" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>';
+ echo preg_replace($twitch_pattern, $replace, $row['winner_video_url']);
+}
+
+if(preg_match_all($video_pattern,$row['winner_video_url'])) {
+  // valid video
+ $replace = '<video controls="" loop="" controls src="$1" style="max-width: 960px; max-height: 676px;"></video>';
+ echo preg_replace($video_pattern, $replace, $row['winner_video_url']);
+}
+
+if(preg_match_all($image_pattern,$row['winner_video_url'])) {
+  // valid image
+ $replace = '<a href="$1" target="_blank"><img class="sml" src="$1" /></a><br />';
+ echo preg_replace($image_pattern, $replace, $row['winner_video_url']);
+}
+
+if(preg_match_all($general_url_pattern,$row['winner_video_url'])) {
+  // valid general url
+ $replace = '<a href="$1" target="_blank">$1</a>';
+ echo preg_replace($general_url_pattern, $replace, $row['winner_video_url']);
+}
+
+ else {
+
+     if ($row['loser_video_url'] != ""){
+
+if(preg_match_all($youtube_pattern,$row['loser_video_url'])) {
+ // valid youtube
+ $replace = '<iframe width="420" height="345" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>';
+ echo preg_replace($youtube_pattern, $replace, $row['winner_video_url']);
+ }
+
+if(preg_match_all($vimeo_pattern,$row['loser_video_url'])) {
+ // valid vimeo
+ $replace = '<iframe width="420" height="345" src="//player.vimeo.com/video/$1" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+ echo preg_replace($vimeo_pattern, $replace, $row['loser_video_url']);
+ }
+
+if(preg_match_all($twitch_pattern,$row['loser_video_url'])) {
+ // valid twitch
+ $replace = '<iframe src="https://player.twitch.tv/?channel=$1&!autoplay" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>';
+ echo preg_replace($twitch_pattern, $replace, $row['loser_video_url']);
+}
+
+if(preg_match_all($video_pattern,$row['loser_video_url'])) {
+ // valid video
+ $replace = '<video controls="" loop="" controls src="$1" style="max-width: 960px; max-height: 676px;"></video>';
+ echo preg_replace($video_pattern, $replace, $row['loser_video_url']);
+}
+
+if(preg_match_all($image_pattern,$row['loser_video_url'])) {
+ // valid image
+ $replace = '<a href="$1" target="_blank"><img class="sml" src="$1" /></a><br />';
+ echo preg_replace($image_pattern, $replace, $row['loser_video_url']);
+}
+
+if(preg_match_all($general_url_pattern,$row['loser_video_url'])) {
+ // valid general url
+ $replace = '<a href="$1" target="_blank">$1</a>';
+ echo preg_replace($general_url_pattern, $replace, $row['loser_video_url']);
+}}
 
 
-
-
-
-
-
-
-	if ($row['winner_video_url'] != "") {
-
-	  if($row['winner_video_url'] == strip_tags($row['winner_video_url'])) {
-        //No HTML in string = link
-
-        echo '<a href="' . $row['winner_video_url'] . '">Stream Link</a>';
-
-
-
-    } else {
-
-
-        //Contains HTML = iframe
-        echo $row['winner_video_url'];
-
-    }}
-
-		else {
-
-    if ($row['replay_filename'] != "") {
-
-		echo  '<a href="' . 'share/replays/'.$row['replay_filename'] . '"><img src="' . 'share/replays/'.$row['replay_filename'] . '" width="400"></a>';
-
-	}	else {
-
-			if ($row['loser_video_url'] != "") {
-
-	  if($row['loser_video_url'] == strip_tags($row['loser_video_url'])) {
-        //No HTML in string = link
-
-        echo '<a href="' . $row['loser_video_url'] . '">Stream Link</a>';
-
-
-
-    } else {
-
-
-        //Contains HTML = iframe
-        echo $row['loser_video_url'];
-
-    }}
-
-		else {
+ 	else {
 
     if ($row['replay_filename'] != "") {
 
@@ -192,7 +229,8 @@ if (INDEX_COMMENT_HILITE == 1) {
 
 	}
 
-	}}}
+	}
+ }
 
 
 
