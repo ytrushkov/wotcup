@@ -138,7 +138,7 @@ if ($row['winner_video_url'] != "")
 
  $youtube_pattern = '/(?:http?s?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?(\S+)/';
  $vimeo_pattern = ' /(?:http?s?:\/\/)?(?:www\.)?(?:vimeo\.com)\/?(\S+)/';
- $twitch_pattern = ' /(?:http?s?:\/\/)?(?:www\.)?(?:twitch\.tv)\/?(\S+)/';
+ $twitch_pattern = ' /(?:http?s?:\/\/)?(?:www\.)?(?:twitch\.tv\/videos)\/?(\S+)/';
  $video_pattern = ' /([-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?(?:webm|mp4|ogv))/i';
  $image_pattern = ' /([-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?(?:jpg|jpeg|gif|png))/i';
  $general_url_pattern = ' /(?!.*")([-a-zA-Z0-9@:%_\+.~#?&//=;]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=;]*))/i';
@@ -158,7 +158,7 @@ if(preg_match_all($vimeo_pattern,$row['winner_video_url'])) {
 
 if(preg_match_all($twitch_pattern,$row['winner_video_url'])) {
     // valid twitch
- $replace = '<iframe src="https://player.twitch.tv/?channel=$1&!autoplay" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>';
+ $replace = '<iframe src="https://player.twitch.tv/?video=v$1&autoplay=false" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>';
  echo preg_replace($twitch_pattern, $replace, $row['winner_video_url']);
 }
 
