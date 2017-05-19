@@ -115,7 +115,7 @@ if (INDEX_COMMENT_HILITE == 1) {
 	$result = mysql_query($sql,$db);
 	$row = mysql_fetch_array($result);
 
-  	echo "<div class=\"spotlight\"><h1 class=\"spotlight\">Spotlight</h1><br /><a href=\"profile.php?name=$row[0]\"><img border='0' src='avatars/$row[2]' alt='avatar' style='height:50px'/></a><b> <a href=\"profile.php?name=$row[0]\">$row[0]</a> (".$row['winner_elo'].") / <a href=\"profile.php?name=$row[1]\">$row[1]</a> (".$row['loser_elo'].")</b>";
+  	echo "<div class=\"spotlight\"><h1 class=\"spotlight\">Spotlight</h1><br /><a href=\"profile.php?name=$row[0]\"><img border='0' src='avatars/$row[2]' alt='avatar' style='height:60px'/></a><b> <a href=\"profile.php?name=$row[0]\">$row[0]</a> (".$row['winner_elo'].") / <a href=\"profile.php?name=$row[1]\">$row[1]</a> (".$row['loser_elo'].")</b>";
 
 
 	// We don't want to show the comments to members that are not logged in if comments are set to only display to logged in members...
@@ -164,7 +164,7 @@ if(preg_match_all($twitch_pattern,$row['winner_video_url'])) {
 
 if(preg_match_all($video_pattern,$row['winner_video_url'])) {
   // valid video
- $replace = '<video controls="" loop="" controls src="$1" style="max-width: 960px; max-height: 676px;"></video>';
+ $replace = '<video controls="" loop="" controls src="$1" style="max-width: 420px; max-height: 345px;"></video>';
  echo preg_replace($video_pattern, $replace, $row['winner_video_url']);
 }
 
@@ -204,7 +204,7 @@ if(preg_match_all($twitch_pattern,$row['loser_video_url'])) {
 
 if(preg_match_all($video_pattern,$row['loser_video_url'])) {
  // valid video
- $replace = '<video controls="" loop="" controls src="$1" style="max-width: 960px; max-height: 676px;"></video>';
+ $replace = '<video controls="" loop="" controls src="$1" style="max-width: 420px; max-height: 345px;"></video>';
  echo preg_replace($video_pattern, $replace, $row['loser_video_url']);
 }
 
