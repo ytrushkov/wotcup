@@ -44,6 +44,7 @@ if ($uploadOk == 0) {
 } else {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
         echo " The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+        echo "<a href='profile.php?name=".$_SESSION['username']."'> Go back to your profile.</a></p>";
     } else {
         echo " Sorry, there was an error uploading your file.";
     }
