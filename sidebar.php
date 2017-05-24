@@ -87,7 +87,9 @@ if ((mysql_num_rows($result)==0) && isset($_SESSION['username'])) {
 
 }
 
+//Show discord link
 
+echo "<a href='https://discord.gg/7e7DUhh'>Discord link: https://discord.gg/7e7DUhh</a><br /><br />";
 
 // Show latest played games:
 
@@ -149,7 +151,7 @@ $result = mysql_query($sql,$db);
 
 echo "<br><b>Clan of the month</b> (".date('F Y', $prevStartDate).")<br>";
 while ($bajs = mysql_fetch_array($result)) {
-	echo "<img border='0' src='avatars/$bajs[2]' alt='avatar' style='height:75px'/><a href=\"profile.php?name=$bajs[0]\">$bajs[0]</a> ($bajs[3] / +$bajs[1]pts)";
+	echo "<a href=\"profile.php?name=$bajs[0]\"><img border='0' src='avatars/$bajs[2]' alt='avatar' style='height:75px'/></a><a href=\"profile.php?name=$bajs[0]\">$bajs[0]</a> ($bajs[3] / +$bajs[1]pts)";
 }
 unset($prevStartDate);
 
