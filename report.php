@@ -220,6 +220,11 @@ if (isset($_POST['report'])) {
 
 				$query2 = "UPDATE $gamestable SET winner_video_url = '$stream', winner_comment = '$comment' WHERE  winner = '$username' AND reported_on = '".$result['reportedTime']."'";
 	}
+	
+	if (($sportsmanship != "") && ($comment != "")) {
+
+				$query2 = "UPDATE $gamestable SET loser_stars = '$sportsmanship', winner_comment = '$comment' WHERE  winner = '$username' AND reported_on = '".$result['reportedTime']."'";
+	}
 
 	if (($sportsmanship != "") && ($comment != "") && ($stream != "")) {
 
