@@ -179,7 +179,7 @@ while ($row = mysql_fetch_array($result)) {
 
 ?>
 <tr>
-<td align="center"><?php echo "<img border='0' height='32px' src='avatars/$row[Avatar]' alt='avatar' />"?></td>
+<td align="center"><?php echo "<img border='0' height='48px' src='avatars/$row[Avatar]' alt='avatar' />"?></td>
 <td><?php echo "<a href='profile.php?name=$row[name]'>$namepage</a>"?></td>
 <td><?php echo $games ?></td>
 <td><?php echo $wins ?></td>

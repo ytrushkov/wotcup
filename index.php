@@ -101,17 +101,21 @@ require('top.php');
 
 <?php
 
-If (INDEX_COMMENT_HILITE == 1) {
+if (INDEX_COMMENT_HILITE == 1) {
 
 
-	$sql ="SELECT winner, loser, replay_filename is not null as is_replay, reported_on, winner_comment, loser_comment, winner_elo, loser_elo FROM $gamestable WHERE withdrawn = 0 AND contested_by_loser = 0  AND (winner_comment != '' || loser_comment != '') ORDER BY reported_on DESC LIMIT 0,1";
+	$sql ="SELECT $gamestable.winner, $gamestable.loser, $playerstable.Avatar, $gamestable.replay_filename, $gamestable.winner_video_url, $gamestable.loser_video_url, $gamestable.reported_on, $gamestable.winner_comment, $gamestable.loser_comment, $gamestable.winner_elo, $gamestable.loser_elo
+	FROM $gamestable
+	LEFT JOIN $playerstable ON $gamestable.winner = $playerstable.name
+	WHERE withdrawn = 0 AND contested_by_loser = 0  AND $playerstable.name = $gamestable.winner ORDER BY reported_on DESC LIMIT 0,1";
+
+
+
 
 	$result = mysql_query($sql,$db);
 	$row = mysql_fetch_array($result);
 
-
-	echo "<div class=\"spotlight\"><h1 class=\"spotlight\">Spotlight</h1><br /> <b>".$row['winner']." (".$row['winner_elo'].") / ".$row['loser']." (".$row['loser_elo'].")</b>";
-
+  	echo "<div class=\"spotlight\"><h1 class=\"spotlight\">Spotlight</h1><br /><a href=\"profile.php?name=$row[0]\"><img border='0' src='avatars/$row[2]' alt='avatar' style='height:60px'/></a><b> <a href=\"profile.php?name=$row[0]\">$row[0]</a> (".$row['winner_elo'].") / <a href=\"profile.php?name=$row[1]\">$row[1]</a> (".$row['loser_elo'].")</b>";
 
 
 	// We don't want to show the comments to members that are not logged in if comments are set to only display to logged in members...
@@ -128,26 +132,107 @@ If (INDEX_COMMENT_HILITE == 1) {
 			}
 	} else { echo "<i>Please login to read game comments.</i>"; }
 
-	if ($row['is_replay'] != 0) {
-		echo "
-		<!-- Trigger the Modal -->
-		<img id=\"myImg\" src=\"download-replay.php?reported_on=$row[reported_on]\"
-		alt=\"".$row['winner']." (".$row['winner_elo'].") / ".$row['loser']." (".$row['loser_elo'].")\" height=\"200\"
-		onclick=\"document.getElementById('myModal').style.display='block'\">
 
-		<!-- The Modal -->
-		<div id=\"myModal\" class=\"modal\">
 
-		  <!-- The Close Button -->
-		  <span class=\"close_button\" onclick=\"document.getElementById('myModal').style.display='none'\">&times;</span>
+if ($row['winner_video_url'] != "")
 
-		  <!-- Modal Content (The Image) -->
-		  <img class=\"modal-content\" id=\"img01\" src=\"download-replay.php?reported_on=$row[reported_on]\">
+ $youtube_pattern = '/(?:http?s?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?(\S+)/';
+ $vimeo_pattern = ' /(?:http?s?:\/\/)?(?:www\.)?(?:vimeo\.com)\/?(\S+)/';
+ $twitch_pattern = ' /(?:http?s?:\/\/)?(?:www\.)?(?:twitch\.tv\/videos)\/?(\S+)/';
+ $video_pattern = ' /([-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?(?:webm|mp4|ogv))/i';
+ $image_pattern = ' /([-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?(?:jpg|jpeg|gif|png))/i';
+ $general_url_pattern = ' /(?!.*")([-a-zA-Z0-9@:%_\+.~#?&//=;]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=;]*))/i';
 
-		  <!-- Modal Caption (Image Text) -->
-		  <div id=\"caption\">".$row['winner']." (".$row['winner_elo'].") / ".$row['loser']." (".$row['loser_elo'].")</div>
-		</div>";
+if(preg_match_all($youtube_pattern,$row['winner_video_url'])) {
+    // valid youtube
+ $replace = '<iframe width="420" height="345" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>';
+
+ echo preg_replace($youtube_pattern, $replace, $row['winner_video_url']);
+ }
+
+if(preg_match_all($vimeo_pattern,$row['winner_video_url'])) {
+    // valid vimeo
+ $replace = '<iframe width="420" height="345" src="//player.vimeo.com/video/$1" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+ echo preg_replace($vimeo_pattern, $replace, $row['winner_video_url']);
+ }
+
+if(preg_match_all($twitch_pattern,$row['winner_video_url'])) {
+    // valid twitch
+ $replace = '<iframe src="https://player.twitch.tv/?video=v$1&autoplay=false" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>';
+ echo preg_replace($twitch_pattern, $replace, $row['winner_video_url']);
+}
+
+if(preg_match_all($video_pattern,$row['winner_video_url'])) {
+  // valid video
+ $replace = '<video controls="" loop="" controls src="$1" style="max-width: 420px; max-height: 345px;"></video>';
+ echo preg_replace($video_pattern, $replace, $row['winner_video_url']);
+}
+
+if(preg_match_all($image_pattern,$row['winner_video_url'])) {
+  // valid image
+ $replace = '<a href="$1" target="_blank"><img class="sml" src="$1" /></a><br />';
+ echo preg_replace($image_pattern, $replace, $row['winner_video_url']);
+}
+
+if(preg_match_all($general_url_pattern,$row['winner_video_url'])) {
+  // valid general url
+ $replace = '<a href="$1" target="_blank">$1</a>';
+ echo preg_replace($general_url_pattern, $replace, $row['winner_video_url']);
+}
+
+ else {
+
+     if ($row['loser_video_url'] != ""){
+
+if(preg_match_all($youtube_pattern,$row['loser_video_url'])) {
+ // valid youtube
+ $replace = '<iframe width="420" height="345" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>';
+ echo preg_replace($youtube_pattern, $replace, $row['winner_video_url']);
+ }
+
+if(preg_match_all($vimeo_pattern,$row['loser_video_url'])) {
+ // valid vimeo
+ $replace = '<iframe width="420" height="345" src="//player.vimeo.com/video/$1" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+ echo preg_replace($vimeo_pattern, $replace, $row['loser_video_url']);
+ }
+
+if(preg_match_all($twitch_pattern,$row['loser_video_url'])) {
+ // valid twitch
+ $replace = '<iframe src="https://player.twitch.tv/?channel=$1&!autoplay" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>';
+ echo preg_replace($twitch_pattern, $replace, $row['loser_video_url']);
+}
+
+if(preg_match_all($video_pattern,$row['loser_video_url'])) {
+ // valid video
+ $replace = '<video controls="" loop="" controls src="$1" style="max-width: 420px; max-height: 345px;"></video>';
+ echo preg_replace($video_pattern, $replace, $row['loser_video_url']);
+}
+
+if(preg_match_all($image_pattern,$row['loser_video_url'])) {
+ // valid image
+ $replace = '<a href="$1" target="_blank"><img class="sml" src="$1" /></a><br />';
+ echo preg_replace($image_pattern, $replace, $row['loser_video_url']);
+}
+
+if(preg_match_all($general_url_pattern,$row['loser_video_url'])) {
+ // valid general url
+ $replace = '<a href="$1" target="_blank">$1</a>';
+ echo preg_replace($general_url_pattern, $replace, $row['loser_video_url']);
+}}
+
+
+ 	else {
+
+    if ($row['replay_filename'] != "") {
+
+		echo  '<a href="' . 'share/replays/'.$row['replay_filename'] . '"><img src="' . 'share/replays/'.$row['replay_filename'] . '" width="400"></a>';
+
 	}
+
+	}
+ }
+
+
 
 // Magic Commentator starts here ---------------------------------------------------------------
 if  ($MagicComGotEloSettings['Comments'] > 0){

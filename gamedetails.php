@@ -16,30 +16,51 @@ if (NONPUBLIC_REPLAY_COMMENTS == 1) {
 	require('logincheck.inc.php');
 }
 
-if (isset($_POST['SendFeedback'])) {
-	$sportsmanship = trim($_POST['sportsmanship']); 
+
+
+	if (isset($_POST['SendFeedback'])) {
+	$sportsmanship = trim($_POST['sportsmanship']);  
 	$comment = trim($_POST['comment']);
 	$reported_on = $_GET['reported_on'];
 
-	// Now we'll decide how the sql query should look like. We only want to update whatever the user changed:
+	if ($sportsmanship != "") {
 
-	if ($sportsmanship != "") { 
+		echo "<br>Sportsmanship set. <br>";
 		$query2 = "UPDATE $gamestable SET winner_stars = '$sportsmanship' WHERE reported_on = '$reported_on' AND loser = '".mysql_escape_string($_SESSION['username'])."'";
 	}
-	
-	if ($comment != "") { 
-		$query2 = "UPDATE $gamestable SET loser_comment = '$comment' WHERE reported_on = '$reported_on' AND loser = '".mysql_escape_string($_SESSION['username'])."'";	
+
+	if ($comment != "") {
+
+		echo "<br>Comment added. <br>";
+		$query2 = "UPDATE $gamestable SET loser_comment = '$comment' WHERE reported_on = '$reported_on' AND loser = '".mysql_escape_string($_SESSION['username'])."'";
 	}
-	
-	if ($sportsmanship != "" && $comment != "") { 
-		$query2 = "UPDATE $gamestable SET loser_comment = '$comment', winner_stars = '$sportsmanship' WHERE reported_on = '$reported_on' AND loser = '".mysql_escape_string($_SESSION['username'])."'";
+
+	if ($stream != "") {
+
+		echo "<br>Stream URL added. <br>";
+		$query2 = "UPDATE $gamestable SET loser_video_url = '$stream' WHERE reported_on = '$reported_on' AND loser = '".mysql_escape_string($_SESSION['username'])."'";
 	}
-	
-	
+
+	if (($sportsmanship != "") && ($stream != "")) {
+				$query2 = "UPDATE $gamestable SET loser_comment = '$comment', loser_video_url = '$stream' WHERE reported_on = '$reported_on' AND loser = '".mysql_escape_string($_SESSION['username'])."'";
+	}
+
+	if (($stream != "") && ($comment != "")) {
+
+				$query2 = "UPDATE $gamestable SET loser_video_url = '$stream', loser_comment = '$comment' WHERE reported_on = '$reported_on' AND loser = '".mysql_escape_string($_SESSION['username'])."'";
+	}
+
+	if (($sportsmanship != "") && ($comment != "") && ($stream != "")) {
+
+				$query2 = "UPDATE $gamestable SET winner_stars = '$sportsmanship', loser_comment = '$comment', loser_video_url = '$stream' WHERE reported_on = '$reported_on' AND loser = '".mysql_escape_string($_SESSION['username'])."'";
+	}
+
+		
 	// Now lets apply it if and only if there was a comment /sportsmanship point/replay given.
-	
-	if ($sportsmanship != "" || $comment != "") 
-		$result2 = mysql_query($query2) or die("mysql failed somehow");
+		
+	if (($sportsmanship != "") || ($comment != "") || ($stream != "")) {
+		$result2 = mysql_query($query2) or die(mysql_error());
+    }
 
 	// Save replay into system and name into db
 	// We use the tmp_name to detect if somebody actually filled in a file for upload.
@@ -243,6 +264,10 @@ if (($game['loser_comment'] == "") && (time() < $game['unixtime']+60*60*24*$repo
 <tr><td valign="top">
 <p valign="top">Game comment</p></td>
 <td valign="top"><textarea name="comment" rows="5" cols="60"></textarea> </td>
+</tr>
+<tr><td valign="top">
+<p valign="top">Stream link or embed code</p></td>
+<td valign="top"><textarea name="stream" rows="2" cols="60"></textarea> </td>
 </tr>
 <?php } ?>	
 <tr><td>

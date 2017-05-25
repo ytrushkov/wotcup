@@ -134,7 +134,7 @@ echo '<tr class="myrow">';
 }
 ?>
 <td><?php echo $ladderrow['rank'];?></td>
-<td align="center"><?php echo "<img border='0' height='32px' src='avatars/".$ladderrow['Avatar']."' alt='avatar' />" ?>
+<td align="center"><?php echo "<img border='0' height='48px' src='avatars/".$ladderrow['Avatar']."' alt='avatar' />" ?>
 <a name="<?php echo $namepage ?>"></a></td>
 <td><?php echo "<a href='profile.php?name=".$ladderrow['name']."'>".$ladderrow['name'] ?></a> </td>
 <td><?php echo $ladderrow['rating']; ?></td>

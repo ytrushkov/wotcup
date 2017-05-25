@@ -1,18 +1,18 @@
-<td width="25%" valign="top" class="smallinfo">	
+<td width="25%" valign="top" class="smallinfo">
 
 <?php
 // We dont want to show the login form if we're logged in alread, so:
 if (!isset($_SESSION['username']))  {
 ?>
-	<form action=index.php method=post> 
+	<form action=index.php method=post>
 	<input type=text name=user size=15>
 	<input type=password name=pass size=15>
 	<input type=submit value=Login>
 	</form>
 
-<?php } 
+<?php }
 
-function TimeConvert($ToConvert) 
+function TimeConvert($ToConvert)
 {
     $min = floor($ToConvert/60);
     $h = floor($min/60);
@@ -62,76 +62,79 @@ if ((mysql_num_rows($result)==0) && isset($_SESSION['username'])) {
 
 } elseif (mysql_num_rows($result) != 0) {
 	echo "<b>Looking for a game</b><ol>";
-	
+
 	while ($row = mysql_fetch_array($result)) {
-	
+
 		$timeleft = $row['entered']-(time()-(60*60*$row['time']));
 		echo "<li><a href=\"profile.php?name=".$row['username']."\">".$row['username']."</a> (".$row['rating'].")<br> ".TimeConvert($timeleft)." - ".$row['meetingplace']."</li>";
 	}
 	echo "</ol><br />";
-	
+
 	// Let's display proper edit / del links if the user is in the waiting list and then show them below it..,..
-	
+
 	$sql = "SELECT id FROM $waitingtable WHERE username = '".$_SESSION['username']."'";
 	$intable = mysql_query($sql);
-	
+
 		if (mysql_num_rows($intable)!=0) {
 		echo "<div align='right'><a href='playnow.php'>edit</a> | <a href='playnow.php?del=".$_SESSION['username']."'>del</a></div><br>";
-		
+
 		} else {
-		
+
 	    if (isset($_SESSION['username']))  {
 			echo "<div align='right'><a href='playnow.php'>add me </a></div>";
 			}
 		}
-		
+
 }
-	
-	
-	
-// Show latest played games:	
-	
-	$sql ="SELECT winner, loser, replay_filename is not null as is_replay, reported_on FROM $gamestable WHERE withdrawn = 0 and contested_by_loser = 0 ORDER BY reported_on DESC LIMIT $numindexresults";
+
+//Show discord link
+
+echo "<a href='https://discord.gg/7e7DUhh'>Discord link: https://discord.gg/7e7DUhh</a><br /><br />";
+
+// Show latest played games:
+
+	$sql ="SELECT winner, loser, replay_filename, reported_on FROM $gamestable WHERE withdrawn = 0 and contested_by_loser = 0 ORDER BY reported_on DESC LIMIT $numindexresults";
 	$result = mysql_query($sql,$db);
-	//$bajs = mysql_fetch_array($result); 
-	
+	//$bajs = mysql_fetch_array($result);
+
 
 	echo "<b>Latest results (w/l)</b><br><ol>";
-	
-	while ($bajs = mysql_fetch_array($result)) { 
+
+	while ($bajs = mysql_fetch_array($result)) {
         echo "<li><a href=\"profile.php?name=$bajs[0]\">$bajs[0]</a> / <a href=\"profile.php?name=$bajs[1]\">$bajs[1]</a>";
         // show replay link or not?
-        if ($bajs['is_replay'] != 0) {
+        if ($bajs['replay_filename'] != "") {
 		    echo " <a href=\"download-replay.php?reported_on=$bajs[reported_on]\">®</a></li>";
 		}
         echo "</li>";
 	}
 	echo "</ol>";
-	
 
-	
+
+
 // Show latest joined and verified players...
 	// dont show admins in the list of newcomers
         $_ignore_admin_players = "";
         if($CFG_ignoreadmins) $_ignore_admin_players = " AND is_admin = 0 ";
 
 	$sql ="SELECT name FROM $playerstable WHERE Confirmation = 'Ok' ".$_ignore_admin_players."ORDER BY player_id DESC LIMIT $numindexnewbs";
-        
+
 
 	$result = mysql_query($sql,$db);
 
 	echo "<br><b>Newcomers</b><br><ol>";
-	
-	while ($bajs = mysql_fetch_array($result)) { 
-	
+
+	while ($bajs = mysql_fetch_array($result)) {
+
 		echo "<li><a href=\"profile.php?name=$bajs[0]\">$bajs[0]</a></li>";
 	}
 	echo "</ol>";
-	
-	
+
+
 	//date('Y-m-d', strtotime(date('Y-m-1')." -1 month"))
 	$prevStartDate = strtotime(date('Y-m-01').' -1 month');
 // Show player of the month
+
 $sqlConditions = "g.reported_on >= '".date('Y-m-d 00:00:00',$prevStartDate)."' AND g.reported_on <= '".date('Y-m-01 00:00:00')."'";
 $sql = "select gg.player, sum(gg.points) as total, p.Avatar, s.rating
 from (
@@ -145,14 +148,14 @@ group by gg.player
 order by total desc
 limit 0,1";
 $result = mysql_query($sql,$db);
-	
+
 echo "<br><b>Clan of the month</b> (".date('F Y', $prevStartDate).")<br>";
-while ($bajs = mysql_fetch_array($result)) { 
-	echo "<img border='0' src='avatars/$bajs[2].gif' alt='avatar' style='margin: 8px 5px'/><a href=\"profile.php?name=$bajs[0]\">$bajs[0]</a> ($bajs[3] / +$bajs[1]pts)";
+while ($bajs = mysql_fetch_array($result)) {
+	echo "<a href=\"profile.php?name=$bajs[0]\"><img border='0' src='avatars/$bajs[2]' alt='avatar' style='height:75px'/></a><a href=\"profile.php?name=$bajs[0]\">$bajs[0]</a> ($bajs[3] / +$bajs[1]pts)";
 }
 unset($prevStartDate);
 
-	
+
 // Show the top x players
 $endtime = microtime();
 $endarray = explode(" ", $endtime);
@@ -160,20 +163,20 @@ $endtime = $endarray[1] + $endarray[0];
 $totaltime = $endtime - $starttime;
 $totaltime = round($totaltime, 5);
 
-	
+
 	echo "<br /><br /><b>Top $numindexhiscore clans</b><ol>";
-	
+
 
 	// Only get the payers that show in the ladder.... its defined by the minimum amount of games they have to played and a minimal rating
     // We don't apply the limit in SQL as we use the total number of rows as the number of ladder players, the since query with more data
     // is faster than the same query twice.
-	
+
 	$result = mysql_query($standingsSqlWithRestrictions." LIMIT 10",$db);
 	while ($row = mysql_fetch_array($result)) {
-		echo "<li><a href=\"profile.php?name=$row[name]\">$row[name]</a> ($row[rating])</li>"; 
+		echo "<li><a href=\"profile.php?name=$row[name]\">$row[name]</a> ($row[rating])</li>";
 	}
 	echo "</ol>";
-	
+
 
 // Link to friendslist: This is probably only usable by Battle for Wesnoth latters - all others would like to comment out/delete the line below:
 /*
@@ -204,20 +207,20 @@ echo "<br /><b>Work days played:</b> $workingdays";
 
 // Display average number of games per user...
 echo "<br /><b>Games/Clan: </b>". @round($playedgames2[0]/$nonzeroplayers[0],2);
-	
-	
+
+
 // Display number of games played within x amount of days...
 $sql="SELECT count(*) FROM $gamestable WHERE cast(reported_on as date) <> cast(now() as date) AND cast(reported_on as date) >= cast(now() as date) - interval ".COUNT_GAMES_OF_LATEST_DAYS." day AND withdrawn = 0 AND contested_by_loser = 0";
 $result = mysql_query($sql,$db);
 $recentgames = mysql_fetch_row($result);
 
-echo "<br><b>Games last ". COUNT_GAMES_OF_LATEST_DAYS ." days: </b>". $recentgames[0]; 
+echo "<br><b>Games last ". COUNT_GAMES_OF_LATEST_DAYS ." days: </b>". $recentgames[0];
 
 // Games today
 $sql="SELECT count(*) FROM $gamestable WHERE cast(reported_on as date) = cast(now() as date) AND withdrawn = 0 AND contested_by_loser = 0";
 $result = mysql_query($sql,$db);
 $todaygames = mysql_fetch_row($result);
-echo "<br><b>Games today: </b>". $todaygames[0]; 
+echo "<br><b>Games today: </b>". $todaygames[0];
 
 
 
@@ -233,7 +236,7 @@ echo "<br /><b>Ranked Clans: </b>".$rankedPlayers[0];
 $sql="SELECT SUM(replay_downloads) FROM $gamestable";
 $result = mysql_query($sql,$db);
 $replaydownloads= mysql_fetch_row($result);
-echo "<br><b>Replay downloads: </b>". $replaydownloads[0]; 
+echo "<br><b>Replay downloads: </b>". $replaydownloads[0];
 
 
 // Do some calcs to get the average sportsmanship rating. Games that have a raing of both the winner and loser will get them added and then divided by 2. Then all game ratings will be summed up and divided with number of games that had a rating.
@@ -247,7 +250,7 @@ $numberwinnerratings=mysql_fetch_row($sql);
 $sql=mysql_query("SELECT count(*) FROM $gamestable WHERE withdrawn = 0 AND contested_by_loser = 0 AND loser_stars != 'NULL'");
 $numberloserratings=mysql_fetch_row($sql);
 
-//Number games with at least one rating 
+//Number games with at least one rating
 
 $sql=mysql_query("SELECT count(*) FROM $gamestable WHERE withdrawn = 0 AND contested_by_loser = 0 AND winner_stars != 'NULL' OR loser_stars != 'NULL'");
 $gamesrated=mysql_fetch_row($sql);
@@ -290,11 +293,11 @@ echo "<br><b>Commented:</b> ". @round((($commented[0]/$playedgames2[0])*100),0) 
 
 
 if (isset($_SESSION['username']))  {
-    echo "<br /><br /><a href='logout.php'>Log out</a>";	
+    echo "<br /><br /><a href='logout.php'>Log out</a>";
 }
-	
+
 ?>
-</td>	
+</td>
 	</tr>
 </table>
 

@@ -8,7 +8,7 @@ require('top.php');
 <p><!DOCTYPE html>
 <html>
 <body>
-<p>Name your file descriptively before you upload it. If it is a logo, it needs at least a clan tag.</p><br>
+<p>Name your file descriptively before you upload it. If it is a logo, it needs at least a clan tag (e.g. 360NA_Native1)</p><br>
 <form action="upload.php" method="post" enctype="multipart/form-data">
     Select image to upload:
     <input type="file" name="fileToUpload" id="fileToUpload">

@@ -18,19 +18,19 @@ require('top.php');
 
 <h3>Ladders</h3>
 <ol>
-        <li>We currently have two ladders in operation: 3v3 and 7v7. One registration allows you to participate in either or both ladders.
-        Any matches played inside another event or tournament (in 3v3 or 7v7) may be reported here, as long as both teams are registered here and agree to the rules
-        of that event. Informal scrims don't count unless explicitly agreed or the training room is tagged as a ladder match. The ladders
+        <li>We currently have several ladders in operation: 3v3, 5v5, 7v7, 10v10. One registration allows you to participate in any or all ladders.
+        Any matches played inside another event or tournament (in 3v3, 5v5, 7v7, or 10v10) may be reported here, as long as both teams are registered here and agree to include that event.
+        Informal scrims don't count unless explicitly agreed or the training room is tagged as a ladder match. The ladders
         are tier agnostic. It is up to the user to determine what tier(s) they wish to play in, either by explicit agreement or by training room choices.
-        The default rules are listed here, but teams may agree to any set of rules they wish, so long as they utilize a 3v3 or 7v7 player format.
+        The default rules are listed here, but teams may agree to any set of rules they wish, so long as they utilize the proper number of players for the respective ladder.
 </ol>
 
 <h3>Game setup</h3>
 <ol>
 	<li>All matches are best of 5. The proper room settings are 10 minute games (7 mins for 3v3), encounter game type, 
         all classes allowed. The host may set the lobby upper and lower tier limits as they wish (or as they have agreed).</li> 
-        <li>Each team may run a maximum of 3 of each tank (1 of each tank in 3v3). Exact reskins (e.g. Lycan,
-        Freedom, Black tanks, etc) count as the same tank. Premiums are also limited to one of each tank. AMX
+        <li>Less than half of each team may be comprised of the same tank (e.g. 2 out of 5). Exact reskins (e.g. Lycan,
+        Freedom, Black tanks, etc) count as the same tank model. Premiums are also limited to one of each tank. AMX
         Chaffee cannot play as top tier. There are no other tank restrictions.</li> 
         <li>Each team will pick a map -- playing once on each side of each map. If the match 
         is tied after 4 games, a single game on Ghost Town will decide the match. The host decides side
@@ -114,7 +114,7 @@ require('top.php');
 	<li>To be <em>ranked</em> you must have played at least;
 		<ol>
 			<li>3 matches <strong>and</strong></li>
-			<li>have played at least one match in the last 15 days. The rank orders
+			<li>have played at least one match in the last 60 days. The rank orders
 			clans by comparing their rating and also the amount of games they've
 			played. The more, the better, in both cases.</li>
 		</ol>
@@ -122,7 +122,7 @@ require('top.php');
 	<li>To be listed in the ladder table you must;
 		<ol>
 			<li>have a rating that's 1300 or above, <strong>and</strong></li>
-			<li>have played at least one match in the last 15 days <strong>and</strong></li>
+			<li>have played at least one match in the last 60 days <strong>and</strong></li>
 			<li>played at least 3 matches in total. You can read the <a href="faq.php#passive">details here</a>.</li>
 		</ol>
 	</li>
@@ -296,7 +296,7 @@ With time your skills will grow, and so will your rating.
 <a name="passive"></a><h4>What does passive rank mode mean?</h4>
 <p>
 In order to keep the ladder meaningful, up to date and to encourage activity
-we have a rule that says that you must have played at least one match in the last 15 days
+we have a rule that says that you must have played at least one match in the last 60 days
 if you wish to be listed as a valid contender in the ladder. If
 you don't play a game for 16 days your account will be set in <em>passive
 rating mode</em>. While being in a passive rating mode you won't get listed
@@ -581,7 +581,7 @@ higher rated player would win 0 points if the difference in rating is &gt;=
 </p>
 <p>
 Third, a player can't really stop playing to "protect" her rating: The ladder
-demands that she plays at least one match every 15 days. If she doesn't she
+demands that she plays at least one match every 60 days. If she doesn't she
 will be temporarily put into passive rating mode and won't be listed in the
 ladder. Then there's also the fact that a skilled player who only plays
 the bare minimum amount of games will face a lot of indirect competition
