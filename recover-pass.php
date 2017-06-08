@@ -29,22 +29,22 @@ if (isset($_POST['submit']) && isset($_POST['mail'])) {
 
 			$row = mysql_fetch_array($result);
 			$player_id = $row['player_id'];
-			
+
 			// store the confirmation key to later be used for login.
 			$sql = "INSERT INTO $resettable (passcode, player_id) VALUES ('$confirm_code', $player_id)";
 			$result = mysql_query($sql,$db);
-			
+
 			$to = $mail;
 
-			$subject = "Ladder of Wesnoth password reset link";
-			$body = "This is your Wesnoth Ladder password reset mail. \r\n";
+			$subject = "Ladder WoT Console password reset link";
+			$body = "This is your Clan Ladder password reset mail. \r\n";
 			$body .= "Click the link below to activate your account: \r\n";
 			$body .= '<a href="http://' . $_SERVER['HTTP_HOST'] . "/reset-pass.php?passkey=$confirm_code\">";
 			$body .= 'http://' . $_SERVER['HTTP_HOST'] . "/reset-pass.php?passkey=$confirm_code</a> \r\n";
 			$body .= "If it doesnt work you can try to copy & pass it into your browser instead.\r\n";
 			$body .= "\r\n";
 
-			$body .= "See you in Wesnoth...\n";
+			$body .= "See you on the battlefield...\n";
 
 			// send email
 			$sentmail = send_mail($to, $body, $subject, $laddermailsender, $titlebar);
@@ -82,7 +82,7 @@ function send_mail($to, $body, $subject, $fromaddress, $fromname)
 
   # Open the first part of the mail
   $msg = "--".$mime_boundary.$eol;
- 
+
   $htmlalt_mime_boundary = $mime_boundary."_htmlalt"; //we must define a different MIME boundary for this section
   # Setup for text OR html -
   $msg .= "Content-Type: multipart/alternative; boundary=\"".$htmlalt_mime_boundary."\"".$eol.$eol;
@@ -106,13 +106,13 @@ function send_mail($to, $body, $subject, $fromaddress, $fromname)
 
   # Finished
   $msg .= "--".$mime_boundary."--".$eol.$eol;  // finish with two eol's for better security. see Injection.
- 
+
   # SEND THE EMAIL
   ini_set(sendmail_from,$fromaddress);  // the INI lines are to force the From Address to be used !
   $mail_sent = mail($to, $subject, $msg, $headers);
- 
+
   ini_restore(sendmail_from);
- 
+
   return $mail_sent;
 }
 
