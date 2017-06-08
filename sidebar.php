@@ -10,7 +10,13 @@ if (!isset($_SESSION['username']))  {
 	<input type=submit value=Login>
 	</form>
 
+
 <?php }
+
+//add link to reset password
+
+echo "<div align='left'><a href='recover-pass.php'>Recover your lost password</a></div><br />";
+
 
 function TimeConvert($ToConvert)
 {
